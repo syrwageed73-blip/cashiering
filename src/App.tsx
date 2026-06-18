@@ -326,6 +326,7 @@ export default function App() {
   };
 
   const syncAppState = (nextState: AppStatePayload) => {
+    const previousState = buildAppState();
     applyAppState(nextState);
 
     saveQueueRef.current = saveQueueRef.current
@@ -333,9 +334,23 @@ export default function App() {
       .then(async () => {
         await saveAppState(nextState);
       })
-      .catch((error) => {
+      .catch(async (error) => {
         console.error('Failed to persist app state:', error);
-        addToast(t('app.errors.syncFailed'), 'error');
+
+        try {
+          const remoteState = await fetchAppState();
+          if (remoteState) {
+            applyAppState(remoteState);
+            setCart([]);
+          } else {
+            applyAppState(previousState);
+          }
+        } catch (reloadError) {
+          console.error('Failed to restore app state after save error:', reloadError);
+          applyAppState(previousState);
+        }
+
+        addToast(error instanceof Error ? error.message : t('app.errors.syncFailed'), 'error');
       });
   };
 
