@@ -11,9 +11,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distDir = path.join(__dirname, 'dist');
 const distIndexPath = path.join(distDir, 'index.html');
+const defaultSupabaseUrl = appConfig.supabase.url;
+
+function getSafeUrlOrigin(value) {
+  try {
+    return value ? new URL(value).origin : null;
+  } catch {
+    return null;
+  }
+}
+
 const PORT = Number(process.env.PORT || 4000);
-const SUPABASE_URL = process.env.SUPABASE_URL || appConfig.supabase.url;
-const SUPABASE_ORIGIN = SUPABASE_URL ? new URL(SUPABASE_URL).origin : null;
+const SUPABASE_URL = getSafeUrlOrigin(process.env.SUPABASE_URL) ? process.env.SUPABASE_URL : defaultSupabaseUrl;
+const SUPABASE_ORIGIN = getSafeUrlOrigin(SUPABASE_URL);
 const SUPABASE_ANON_KEY =
   process.env.SUPABASE_ANON_KEY ||
   process.env.VITE_SUPABASE_ANON_KEY ||
