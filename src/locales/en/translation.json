@@ -1,0 +1,686 @@
+{
+  "app": {
+    "brand": "نظام البيع الذكي",
+    "version": "v2.4",
+    "roles": {
+      "admin": "Admin",
+      "cashier": "Cashier"
+    },
+    "loading": {
+      "authCheck": "Verifying user session",
+      "authDesc": "Preparing the Supabase-linked authentication gateway.",
+      "dataLoad": "Loading store data",
+      "dataDesc": "Signed in successfully. Fetching your saved data and permissions from Supabase."
+    },
+    "header": {
+      "fullscreen": "Enter Full Screen",
+      "exitFullscreen": "Exit Full Screen",
+      "shortcuts": "Shortcuts",
+      "shortcutsTitle": "View keyboard shortcuts and help (F1)",
+      "shortcutsLabel": "View keyboard shortcuts and help",
+      "signOut": "Sign Out",
+      "signOutTitle": "Sign Out",
+      "signOutLabel": "Sign Out"
+    },
+    "sidebar": {
+      "gateways": "System Gateways",
+      "connected": "Connected • Offline mode active",
+      "storeProtected": "Protected Retail Supermarket",
+      "versionProtected": "Version 2.4 • Fully Protected"
+    },
+    "shortcuts": {
+      "title": "Quick Shortcuts Guide",
+      "closeLabel": "Close shortcuts window",
+      "barcodeFocus": "Instantly focus the barcode scanner input",
+      "checkout": "Complete billing and direct payment",
+      "clearCart": "Clear and empty the entire shopping cart",
+      "toggleHelp": "Open / close the current help guide",
+      "closeDialog": "Cancel and close any open dialog",
+      "footnote": "* These shortcuts work automatically anywhere in the cashier interface for faster performance.",
+      "understood": "Got it"
+    },
+    "errors": {
+      "syncFailed": "Failed to sync store data with the server.",
+      "signOutFailed": "Failed to sign out at this time.",
+      "profileLoadFailed": "Failed to load user role from server. Defaulting to Cashier permissions.",
+      "dataLoadFailed": "Failed to load store data from server. Check your Supabase settings and backend.",
+      "supabaseConfig": "Add your public Supabase URL and anon key to config.js first to enable the login screen."
+    },
+    "toasts": {
+      "saleSuccess": "Invoice {{invoiceNo}} sales successfully recorded!"
+    }
+  },
+  "nav": {
+    "pos": {
+      "label": "Cashier Screen",
+      "shortLabel": "Cashier",
+      "description": "A fast sales interface designed for scanning, searching, and completing invoices in the fewest steps."
+    },
+    "products": {
+      "label": "Product Management",
+      "shortLabel": "Products",
+      "description": "Organize the catalog, update prices, and print barcode labels from one screen."
+    },
+    "inventory": {
+      "label": "Stock & Inventory",
+      "shortLabel": "Inventory",
+      "description": "Track quantities, adjustments, and critical alerts with a clear and instant movement log."
+    },
+    "reports": {
+      "label": "Reports & Sales",
+      "shortLabel": "Reports",
+      "description": "Daily and monthly view of invoices and revenue with instant access to the sales log."
+    },
+    "settings": {
+      "label": "System Settings",
+      "shortLabel": "Settings",
+      "description": "Configure store data, taxes, and general alerts to reflect across the entire experience."
+    },
+    "backup": {
+      "label": "Backup",
+      "shortLabel": "Backup",
+      "description": "Export and restore system data locally with a clearer interface for data safety."
+    }
+  },
+  "viewSummary": {
+    "pos": {
+      "eyebrow": "Direct Sales Center",
+      "title": "Everything the cashier needs to complete a sale quickly and clearly.",
+      "statAvailableProducts": "Available Products",
+      "statCartUnits": "Cart Units",
+      "statTodayInvoices": "Today's Invoices"
+    },
+    "products": {
+      "eyebrow": "Catalog Center",
+      "title": "Review items, prices, and alerts before they affect sales.",
+      "statTotalItems": "Total Items",
+      "statCategories": "Categories",
+      "statOutOfStock": "Out of Stock"
+    },
+    "inventory": {
+      "eyebrow": "Inventory Control Room",
+      "title": "A focused dashboard for monitoring critical quantities and inventory movements in real time.",
+      "statTotalUnits": "Total Units",
+      "statLowStock": "Low Stock",
+      "statMovements": "Movement Log"
+    },
+    "reports": {
+      "eyebrow": "Business Performance Dashboard",
+      "title": "Faster reading of invoices and revenue with direct access to the sales log.",
+      "statTotalInvoices": "Total Invoices",
+      "statTodaySales": "Today's Sales",
+      "statMonthInvoices": "Month's Invoices"
+    },
+    "settings": {
+      "eyebrow": "Runtime Configuration",
+      "title": "Unified settings that keep invoices and alerts consistent within the system.",
+      "statStoreName": "Store Name",
+      "statTax": "Tax",
+      "statAlertThreshold": "Alert Threshold"
+    },
+    "backup": {
+      "eyebrow": "Data Safety",
+      "title": "A clearer interface for securing records before transfer or restoration on another device.",
+      "statItems": "Items",
+      "statInvoices": "Invoices",
+      "statMovements": "Movements"
+    }
+  },
+  "auth": {
+    "brand": "نظام البيع الذكي",
+    "secureAccessLayer": "Secure Access Layer",
+    "supabase": "Supabase",
+    "loginGatewayBadge": "Supabase-Linked Login Gateway",
+    "signInHeading": "Sign in first before accessing store data and control panels.",
+    "supabaseAuthDesc": "The interface is configured to work with Supabase Auth so each user's data is isolated, and app access is only allowed after authentication.",
+    "accountProvisionNote": "Accounts are created only from your Supabase dashboard. This page allows sign-in for existing users only.",
+    "features": {
+      "protectedAccounts": "Protected Accounts",
+      "protectedAccountsDesc": "Encrypted secure access",
+      "restrictedAccess": "Restricted Access",
+      "restrictedAccessDesc": "Role-based permissions",
+      "emailLogin": "Email Login",
+      "emailLoginDesc": "Your email is your key"
+    },
+    "tabs": {
+      "login": "Sign In",
+      "register": "Create Account"
+    },
+    "fields": {
+      "email": "Email Address",
+      "emailPlaceholder": "Enter your email",
+      "password": "Password",
+      "passwordPlaceholder": "Enter your password"
+    },
+    "buttons": {
+      "login": "Sign In to System",
+      "register": "Create Account",
+      "forgotPassword": "Forgot Password?",
+      "resendConfirmation": "Resend Confirmation Email"
+    },
+    "errors": {
+      "invalidCredentials": "Incorrect email or password.",
+      "emailNotConfirmed": "Email has not been confirmed yet. Check your inbox.",
+      "supabaseNotConfigured": "Supabase settings are incomplete. Unable to sign in.",
+      "registrationFailed": "Failed to create account. Please try again.",
+      "resetFailed": "Failed to send password reset link. Please try again.",
+      "resendFailed": "Failed to resend confirmation link. Please try again.",
+      "emailRequiredForReset": "Enter your email first to send the password recovery link.",
+      "emailRequiredForResend": "Enter your email first to resend the confirmation message."
+    },
+    "status": {
+      "resetSent": "Password reset link has been sent to your email.",
+      "resendSent": "Confirmation link has been sent to your email.",
+      "registrationSuccess": "Account created. Check your email to confirm your account."
+    },
+    "configError": {
+      "title": "Supabase Settings Missing",
+      "description": "Add your public Supabase URL and anon key to config.js."
+    }
+  },
+  "passwordRecovery": {
+    "title": "Password Recovery",
+    "supabaseDesc": "Enter a new password for your Supabase account",
+    "heading": "Update Password",
+    "description": "Recovery link verified. Enter a new password then complete your sign-in.",
+    "fields": {
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "buttons": {
+      "submit": "Save New Password",
+      "submitting": "Updating password..."
+    },
+    "errors": {
+      "supabaseNotConfigured": "Supabase settings are incomplete in the runtime environment.",
+      "passwordTooShort": "New password must be at least 6 characters.",
+      "passwordMismatch": "Password confirmation does not match the new password.",
+      "updateFailed": "Failed to update password at this time."
+    },
+    "status": {
+      "success": "Password updated successfully. You can now sign in."
+    }
+  },
+  "pos": {
+    "barcodeLabel": "Barcode",
+    "barcodePlaceholder": "Enter or scan barcode...",
+    "barcodeScanPlaceholder": "Scan barcode and press Enter...",
+    "manualSearchPlaceholder": "Search by name or barcode manually...",
+    "searchProductsPlaceholder": "Search products...",
+    "quickAccess": "Quick Access",
+    "quickAccessPanelTitle": "Quick Access Panel — Top Cashier Products",
+    "quickAccessOneClick": "One tap",
+    "quickAccessHide": "Hide Panel",
+    "quickAccessShow": "Show Panel",
+    "allCategories": "All",
+    "stockBadge": {
+      "outOfStock": "Out",
+      "unit_one": "{{count}} pc",
+      "unit_other": "{{count}} pcs",
+      "wafra": "In Stock",
+      "wafraCount": "In Stock: {{count}}"
+    },
+    "stats": {
+      "searchResults": "Current Search Results",
+      "cartUnits": "Cart Units",
+      "lowStockInView": "Low Stock in Current View",
+      "quickProducts": "Quick Products"
+    },
+    "cart": {
+      "title": "Current Invoice Cart",
+      "empty": "Cart is empty",
+      "emptyDesc": "Search or scan a barcode to add products",
+      "emptyTitle": "Cart is currently empty",
+      "emptyHint": "Tap items or scan a barcode to get started",
+      "removeItem": "Remove",
+      "discountLabel": "Discount",
+      "discountPercent": "Percent %",
+      "discountAmount": "Amount SAR",
+      "discountNone": "None",
+      "discountsAvailable": "Available Discounts",
+      "discountsTotal": "Total Applied Discounts:",
+      "subtotal": "Subtotal",
+      "discounts": "Discounts",
+      "tax": "VAT",
+      "total": "Grand Total",
+      "checkout": "Complete Invoice",
+      "checkoutBtn": "Complete Sale & Invoice (F4)",
+      "flatDiscountPlaceholder": "Enter flat discount amount in SAR...",
+      "decreaseQty": "Decrease quantity",
+      "increaseQty": "Increase quantity",
+      "clearCart": "Clear Cart",
+      "clearCartLabel": "Clear entire cart"
+    },
+    "emptySearch": {
+      "title": "No matching products found",
+      "description": "Please check your inputs or add new products to the system"
+    },
+    "checkout": {
+      "title": "Complete Sale",
+      "closeLabel": "Close payment window",
+      "totalDue": "Total Amount Due",
+      "choosePayment": "Choose payment type:",
+      "paymentMethod": "Payment Method",
+      "cash": "Cash",
+      "cashFull": "Cash Payment",
+      "card": "Mada Card",
+      "cardFull": "Mada / Credit Card",
+      "mobile": "Mobile Pay",
+      "mobileFull": "Mobile Pay / Apple Pay",
+      "cashPaidLabel": "Amount Paid",
+      "cashPaidByCustomer": "Amount paid by customer:",
+      "cashPaidPlaceholder": "Amount received",
+      "cashInputPlaceholder": "Enter cash received...",
+      "amountRequired": "{{total}} SAR required",
+      "exact": "Exact",
+      "changeOwed": "Change Due",
+      "changeDueCustomer": "Change due to customer:",
+      "confirmPay": "Confirm Payment & Issue Invoice",
+      "confirmAndPrint": "Record & Print Invoice",
+      "continueShopping": "Continue Shopping",
+      "cancel": "Cancel",
+      "insufficientCash": "Amount paid is less than total",
+      "insufficientCashFull": "Cash paid is less than invoice total ({{total}} SAR)"
+    },
+    "toasts": {
+      "barcodeFocused": "Barcode field focused",
+      "cartEmptyAlert": "Cart is empty!",
+      "productNotFound": "Product not found",
+      "productNotFoundBarcode": "Barcode \"{{barcode}}\" is not registered in the store!",
+      "productOutOfStock": "\"{{name}}\" is not available in stock!",
+      "outOfStock": "{{name}} — out of stock",
+      "productExhausted": "This product is out of stock!",
+      "exceedStock": "Cannot exceed current stock ({{count}} unit)",
+      "stockLimitReached": "Sorry, only {{count}} units are available in stock",
+      "added": "Added: {{name}}",
+      "itemRemoved": "{{name}} removed from cart",
+      "cartCleared": "Cart cleared completely",
+      "checkoutSuccess": "Invoice completed successfully",
+      "checkoutError": "Failed to complete invoice"
+    }
+  },
+  "products": {
+    "pageTitle": "Product Management",
+    "addProduct": "Add Product",
+    "editProduct": "Edit Product",
+    "searchPlaceholder": "Search products...",
+    "filterCategory": "Category",
+    "allCategories": "All",
+    "pageSubtitle": "Update stock prices, add new products, or organize categories.",
+    "table": {
+      "image": "Image",
+      "name": "Product Name",
+      "barcode": "Barcode",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Stock",
+      "lowStockAlert": "Low Stock Alert",
+      "actions": "Actions",
+      "selectAll": "Select all matching products",
+      "empty": "No matching records in inventory",
+      "selectProduct": "Select product {{name}}",
+      "noImage": "No image",
+      "editLabel": "Edit product details",
+      "deleteLabel": "Permanently delete product"
+    },
+    "stockBadge": {
+      "outOfStock": "Out of Stock",
+      "lowStock": "Very Low",
+      "adequate": "Adequate"
+    },
+    "form": {
+      "name": "Product Name",
+      "namePlaceholder": "Enter product name",
+      "barcode": "Barcode",
+      "barcodePlaceholder": "Enter barcode or leave blank",
+      "regenerateBarcode": "Generate New",
+      "category": "Category",
+      "price": "Price",
+      "stock": "Initial Quantity",
+      "lowStockAlert": "Low Stock Alert",
+      "imageUrl": "Image URL (optional)",
+      "imageUrlPlaceholder": "https://...",
+      "save": "Save",
+      "cancel": "Cancel",
+      "addNew": "Add New Product",
+      "editExisting": "Edit Product Details"
+    },
+    "barcodePrint": {
+      "title": "Print Barcode Label",
+      "quantity": "Number of Labels",
+      "label_one": "{{count}} label",
+      "label_other": "{{count}} labels",
+      "print": "Print",
+      "cancel": "Cancel",
+      "setBulkCopiesLabel": "Set copies for all:",
+      "setBulkCopiesDesc": "Change the print quantity for all selected items at once.",
+      "defaultCopiesLabel": "Default copies count",
+      "applyToAll": "Apply to All",
+      "selectedListTitle": "Selected Items for Printing:",
+      "productInfo": "Barcode: {{barcode}} • Price: {{price}} SAR",
+      "previewTitle": "Preview barcode labels before printing:",
+      "totalLabelsLabel": "Total labels to print:",
+      "printSheetTitle": "Product Barcode Labels",
+      "priceTag": "Price: {{price}} SAR"
+    },
+    "bulk": {
+      "selected_one": "{{count}} item selected",
+      "selected_other": "{{count}} items selected",
+      "deleteSelected": "Delete Selected",
+      "printBarcodes": "Print Barcodes"
+    },
+    "toasts": {
+      "addSuccess": "{{name}} added successfully",
+      "editSuccess": "{{name}} updated successfully",
+      "deleteSuccess": "Product deleted successfully",
+      "deleteFailed": "Failed to delete product",
+      "barcodeDuplicate": "Barcode {{barcode}} is already in use",
+      "bulkDeleteSuccess": "{{count}} products deleted",
+      "nameRequired": "Product name is required",
+      "priceInvalid": "Price must be greater than zero",
+      "validationError": "Please fill all fields correctly with valid prices!",
+      "barcodeRegenerated": "A new unique barcode has been generated",
+      "bulkCopiesSet": "Copies set to {{count}} for all selected products"
+    },
+    "confirmDelete": {
+      "title": "Delete Product",
+      "message": "Are you sure you want to delete \"{{name}}\"? This action cannot be undone."
+    }
+  },
+  "inventory": {
+    "pageTitle": "Stock & Inventory",
+    "metrics": {
+      "totalUnits": "Total Units",
+      "lowStock": "Low Stock",
+      "outOfStock": "Out of Stock",
+      "movements": "Total Movements",
+      "totalProducts": "Total Documented Items",
+      "catalogBadge": "Catalog",
+      "itemsInCashier": "items in cashier",
+      "totalWarehouseUnits": "Total Warehouse Units",
+      "assetsBadge": "Assets",
+      "saleUnit": "sale unit",
+      "nearlyOutOfStock": "Items Nearly Out of Stock",
+      "alertBadge": "Alert",
+      "belowSafetyLevel": "below safety level",
+      "completelyOutOfStock": "Completely Out of Stock",
+      "criticalBadge": "Critical",
+      "needsImmediateSupply": "needs immediate supply"
+    },
+    "adjust": {
+      "title": "Stock Adjustment",
+      "subtitle": "Immediately adjust available warehouse quantities and document the reason.",
+      "productLabel": "Product",
+      "productPlaceholder": "Select a product",
+      "typeLabel": "Adjustment Type",
+      "typeAdd": "Add In",
+      "typeSubtract": "Take Out",
+      "typeAdjust": "Set To",
+      "quantityLabel": "Quantity",
+      "quantityLabelNew": "New total stock quantity:",
+      "quantityLabelDelta": "Quantity to add or subtract:",
+      "quantityPlaceholder": "Target units...",
+      "notesLabel": "Notes",
+      "notesPlaceholder": "Enter movement notes...",
+      "submitButton": "Confirm Adjustment",
+      "currentStock": "Current Stock"
+    },
+    "history": {
+      "title": "Stock Movement Log",
+      "subtitle": "Movement log for supply, additions, adjustments, and sales-driven deductions.",
+      "searchPlaceholder": "Search log...",
+      "columns": {
+        "datetime": "Date & Time",
+        "product": "Product",
+        "productName": "Item Name",
+        "type": "Type",
+        "movementType": "Movement Type",
+        "quantity": "Quantity",
+        "notes": "Notes",
+        "detailedNotes": "Detailed Notes"
+      },
+      "types": {
+        "sale": "Sale",
+        "supply": "Supply Shipment",
+        "deficit": "Deficit",
+        "damaged": "Damaged",
+        "deficitDamaged": "Deficit / Damaged",
+        "adjust": "Inventory Adjustment",
+        "add": "Addition",
+        "subtract": "Deduction"
+      },
+      "empty": "No stock movements recorded",
+      "systemNote": "The inventory system is fully synced with live cashier transaction movements."
+    },
+    "unit_one": "{{count}} pc",
+    "unit_other": "{{count}} pcs",
+    "toasts": {
+      "adjustSuccess": "Stock adjustment completed successfully",
+      "adjustFailed": "Failed to adjust stock",
+      "productRequired": "Please select a product",
+      "invalidQuantity": "Please enter a valid quantity (greater than zero)!",
+      "exceedStock": "Cannot deduct more than available stock ({{count}} unit)"
+    }
+  },
+  "reports": {
+    "pageTitle": "Reports & Sales",
+    "tabs": {
+      "overview": "Overview",
+      "invoices": "Invoice Log",
+      "charts": "Charts"
+    },
+    "stats": {
+      "todaySales": "Today's Sales",
+      "todayInvoices": "Today's Invoices",
+      "week7Sales": "Past 7 Days Sales",
+      "monthSales": "Month's Sales",
+      "monthInvoices": "Month's Invoices",
+      "avgInvoice": "Average Invoice",
+      "totalRevenue": "Total Revenue",
+      "invoiceCount_one": "{{count}} invoice",
+      "invoiceCount_other": "{{count}} invoices",
+      "allTimeInvoiceCount": "{{count}} total invoices"
+    },
+    "invoiceTable": {
+      "searchPlaceholder": "Search by invoice number...",
+      "searchAriaLabel": "Search by invoice number",
+      "dateFilterAriaLabel": "Filter by invoice date",
+      "columns": {
+        "invoiceNumber": "Invoice No.",
+        "datetime": "Date & Time",
+        "items": "Items",
+        "subtotal": "Subtotal",
+        "discount": "Discount",
+        "tax": "Tax",
+        "total": "Total",
+        "payment": "Payment Method",
+        "actions": "Actions"
+      },
+      "paymentMethods": {
+        "cash": "Cash",
+        "card": "Mada",
+        "mobile": "Mobile"
+      },
+      "empty": "No invoices recorded",
+      "viewReceipt": "View Receipt",
+      "deleteInvoice": "Delete Invoice"
+    },
+    "itemCount_one": "{{count}} item",
+    "itemCount_other": "{{count}} items",
+    "receipt": {
+      "title": "View Invoice",
+      "paperSize": "Paper Size",
+      "paperA4": "A4",
+      "paperThermal": "Thermal 80mm",
+      "thermal58": "Small Cashier Roll (58mm)",
+      "thermal80": "Standard Wide Roll (80mm)",
+      "print": "Print",
+      "close": "Close"
+    },
+    "confirmDelete": {
+      "title": "Delete Invoice",
+      "message": "Are you sure you want to delete invoice #{{invoiceNumber}}? This action cannot be undone."
+    },
+    "toasts": {
+      "deleteSuccess": "Invoice deleted successfully",
+      "deleteFailed": "Failed to delete invoice"
+    }
+  },
+  "settings": {
+    "pageTitle": "System Settings",
+    "saveButton": "Save Settings",
+    "sectionTitle": "Configure Store Settings & POS",
+    "sectionSubtitle": "Fix invoice details, company logo, and the applicable VAT rate.",
+    "fields": {
+      "storeName": "Store Name",
+      "storeNamePlaceholder": "Enter store name",
+      "storePhone": "Phone Number",
+      "storePhonePlaceholder": "05xxxxxxxx",
+      "storeAddress": "Address",
+      "storeAddressPlaceholder": "Enter store address",
+      "taxPercentage": "VAT Percentage (%)",
+      "lowStockAlertQty": "Low Stock Alert Threshold (units)",
+      "currencySymbol": "Currency Symbol",
+      "currencySymbolPlaceholder": "SAR",
+      "footerNote": "Invoice Footer Text",
+      "footerNotePlaceholder": "Thank you for shopping with us"
+    },
+    "warnings": {
+      "taxWarning": "Changing the tax rate will only affect new invoices and will not modify existing ones.",
+      "taxRangeError": "Error: VAT percentage must be between 0% and 100%!",
+      "lowStockQtyError": "Error: Low stock alert quantity must be greater than zero!"
+    },
+    "toasts": {
+      "saveSuccess": "Settings saved successfully",
+      "saveFailed": "Failed to save settings",
+      "storeNameRequired": "Store name is required"
+    }
+  },
+  "backup": {
+    "pageTitle": "Backup & Data Restore",
+    "overviewSubtitle": "Save a secured copy of the catalog and business records for safety or transfer to another device.",
+    "export": {
+      "title": "Export Data",
+      "description": "Export all system data to a JSON file for backup.",
+      "products_one": "{{count}} item",
+      "products_other": "{{count}} items",
+      "invoices_one": "{{count}} invoice",
+      "invoices_other": "{{count}} invoices",
+      "categories": "Categories",
+      "settingsLabel": "Settings",
+      "stockLogs": "Stock Log",
+      "includesStockAndConfig": "Includes stock movements and general configuration files",
+      "button": "Export Backup"
+    },
+    "import": {
+      "title": "Restore Data",
+      "description": "Restore data from a previously saved JSON file. All current data will be replaced.",
+      "prompt": "Drag backup file here or click to select",
+      "buttonText": "Select Backup File",
+      "fileTypeNote": "Supported files: JSON only",
+      "warning": "Warning: All current data will be replaced by the contents of the imported file.",
+      "warningTitle": "File Restore & Merge Security Warning:",
+      "confirmTitle": "Restore Backup",
+      "confirmMessage": "Are you sure you want to restore the backup? All current data will be replaced and this action cannot be undone.",
+      "confirmButton": "Restore Now"
+    },
+    "toasts": {
+      "exportSuccess": "Backup exported successfully",
+      "exportFailed": "Failed to export backup",
+      "importSuccess": "Data restored successfully",
+      "importFailed": "Failed to restore data. Please verify the file.",
+      "invalidFile": "Invalid file. Please select a valid JSON file."
+    }
+  },
+  "receipt": {
+    "phone": "Phone:",
+    "invoiceNumber": "Invoice #:",
+    "date": "Date:",
+    "time": "Time:",
+    "paymentMethod": "Payment:",
+    "paymentMethods": {
+      "cash": "Cash",
+      "card": "Mada Card",
+      "mobile": "Mobile Pay"
+    },
+    "table": {
+      "item": "Item",
+      "quantity": "Qty",
+      "total": "Total"
+    },
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "tax": "Tax",
+    "finalTotal": "Grand Total",
+    "cashPaid": "Cash Paid",
+    "change": "Change",
+    "footerAuto": "This invoice was automatically generated by the Smart POS System"
+  },
+  "charts": {
+    "salesChart": {
+      "title": "Daily Sales Performance",
+      "subtitle": "Sales and invoices per day",
+      "empty": "No sales data to display"
+    },
+    "bestSellers": {
+      "title": "Best-Selling Items",
+      "subtitle": "Top products by quantity sold",
+      "empty": "No sales data to display",
+      "unit_one": "{{count}} unit",
+      "unit_other": "{{count}} units",
+      "footerNote": "Data extracted from local invoice log",
+      "total": "Total: {{total}} {{currency}}"
+    }
+  },
+  "common": {
+    "actions": {
+      "save": "Save",
+      "cancel": "Cancel",
+      "confirm": "Confirm",
+      "delete": "Delete",
+      "edit": "Edit",
+      "add": "Add",
+      "close": "Close",
+      "print": "Print",
+      "export": "Export",
+      "import": "Import",
+      "search": "Search",
+      "clear": "Clear",
+      "back": "Back",
+      "done": "Done"
+    },
+    "status": {
+      "loading": "Loading...",
+      "saving": "Saving...",
+      "success": "Success",
+      "error": "Error",
+      "warning": "Warning"
+    },
+    "ui": {
+      "selectPlaceholder": "Select...",
+      "multiSelectPlaceholder": "Select...",
+      "comboboxPlaceholder": "Search and select...",
+      "comboboxSearch": "Search...",
+      "comboboxEmpty": "No results",
+      "searchClear": "Clear search",
+      "searchPlaceholder": "Search...",
+      "fieldClear": "Clear",
+      "fileUploadPrompt": "Drag files here or click to choose",
+      "fileUploadButton": "Choose Files",
+      "fileUpload": "Upload file",
+      "fileRemove": "Remove {{filename}}",
+      "modalClose": "Close",
+      "numberDecrease": "Decrease",
+      "numberIncrease": "Increase",
+      "decreaseQty": "Decrease quantity",
+      "increaseQty": "Increase quantity",
+      "multiSelectRemove": "Remove {{label}}",
+      "toastClose": "Close notification",
+      "noResults": "No results"
+    },
+    "units": {
+      "piece_one": "{{count}} pc",
+      "piece_other": "{{count}} pcs"
+    }
+  }
+}

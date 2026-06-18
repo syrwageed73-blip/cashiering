@@ -1,0 +1,940 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Tajawal", "IBM Plex Sans Arabic", "Segoe UI", "Tahoma", "Arial", sans-serif;
+}
+
+/* ================================================================
+   PREMIUM DESIGN SYSTEM — Enhanced POS Cashier UI
+   ================================================================ */
+
+/* === Base & RTL === */
+body {
+  font-family: "Tajawal", "IBM Plex Sans Arabic", "Segoe UI", "Tahoma", "Arial", sans-serif;
+  direction: rtl;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0f9ff 100%);
+  min-height: 100vh;
+  position: relative;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+  isolation: isolate;
+}
+
+/* === Selection Color === */
+::selection {
+  background: rgba(99, 102, 241, 0.2);
+  color: #312e81;
+}
+
+/* ================================================================
+   ANIMATION KEYFRAMES
+   ================================================================ */
+
+/* Slide in from right (RTL) */
+@keyframes slide-in-right {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Slide in from left */
+@keyframes slide-in-left {
+  0% { transform: translateX(-100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Scale in (modal entrance) */
+@keyframes scale-in {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Fade in */
+@keyframes fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Fade in up */
+@keyframes fade-in-up {
+  0% { opacity: 0; transform: translateY(16px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Shimmer loading effect */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Gentle float / breathing */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+/* Pulse ring */
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.4); }
+  70% { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+
+/* Gradient shift */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Counter pop */
+@keyframes count-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Beep sound context simulator animation */
+@keyframes pulse-beep {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Bounce in */
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Ripple */
+@keyframes ripple {
+  0% { transform: scale(0); opacity: 0.5; }
+  100% { transform: scale(4); opacity: 0; }
+}
+
+/* Toast progress bar */
+@keyframes toast-progress {
+  0% { width: 100%; }
+  100% { width: 0%; }
+}
+
+/* Spin slow */
+@keyframes spin-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Glow pulse */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.3), 0 0 10px rgba(99, 102, 241, 0.1); }
+  50% { box-shadow: 0 0 15px rgba(99, 102, 241, 0.5), 0 0 25px rgba(99, 102, 241, 0.2); }
+}
+
+/* ================================================================
+   ANIMATION UTILITY CLASSES
+   ================================================================ */
+
+.animate-beep {
+  animation: pulse-beep 0.15s ease-in-out;
+}
+
+.animate-slide-in {
+  animation: slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-scale-in {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out forwards;
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, transparent 25%, rgba(255,255,255,0.5) 50%, transparent 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.animate-count-pop {
+  animation: count-pop 0.3s ease-out;
+}
+
+.animate-bounce-in {
+  animation: bounce-in 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+.animate-toast-progress {
+  animation: toast-progress 3.8s linear forwards;
+}
+
+/* Staggered children fade in */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 50ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 150ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(6) { animation-delay: 250ms; }
+.stagger-children > *:nth-child(7) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(8) { animation-delay: 350ms; }
+
+/* ================================================================
+   GLASSMORPHISM & PREMIUM CARD STYLES
+   ================================================================ */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.04),
+    0 4px 12px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+.glass-card-strong {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.05),
+    0 8px 24px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.glass-sidebar {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(226, 232, 240, 0.6);
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.03),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.glass-header {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.03),
+    0 4px 12px rgba(0, 0, 0, 0.02);
+}
+
+.view-hero-card {
+  position: relative;
+  background:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.16), transparent 32%),
+    radial-gradient(circle at bottom left, rgba(14, 165, 233, 0.12), transparent 30%),
+    rgba(255, 255, 255, 0.82);
+}
+
+.view-hero-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.16) 1px, transparent 1px);
+  background-size: 24px 24px;
+  mask-image: linear-gradient(to bottom left, rgba(0, 0, 0, 0.65), transparent 80%);
+  pointer-events: none;
+}
+
+.hero-stat-card {
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7), 0 12px 30px rgba(99, 102, 241, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.app-shell-bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.app-shell-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(70px);
+  opacity: 0.42;
+}
+
+.app-shell-orb-1 {
+  width: 18rem;
+  height: 18rem;
+  top: 6rem;
+  right: -3rem;
+  background: rgba(79, 70, 229, 0.22);
+}
+
+.app-shell-orb-2 {
+  width: 22rem;
+  height: 22rem;
+  left: -5rem;
+  bottom: 6rem;
+  background: rgba(14, 165, 233, 0.16);
+}
+
+.app-shell-orb-3 {
+  width: 14rem;
+  height: 14rem;
+  top: 38%;
+  left: 42%;
+  background: rgba(236, 72, 153, 0.14);
+}
+
+/* ================================================================
+   PREMIUM GRADIENT UTILITIES
+   ================================================================ */
+
+.gradient-primary {
+  background: linear-gradient(135deg, #6366f1 0%, #3b82f6 50%, #06b6d4 100%);
+}
+
+.gradient-primary-soft {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(59, 130, 246, 0.06) 50%, rgba(6, 182, 212, 0.04) 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+}
+
+.gradient-danger {
+  background: linear-gradient(135deg, #dc2626 0%, #f43f5e 100%);
+}
+
+.gradient-warning {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+}
+
+.gradient-text-primary {
+  background: linear-gradient(135deg, #6366f1, #3b82f6, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ================================================================
+   HOVER EFFECTS
+   ================================================================ */
+
+.hover-lift {
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease;
+}
+.hover-lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08), 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.hover-scale {
+  transition: transform 0.2s ease;
+}
+.hover-scale:hover {
+  transform: scale(1.03);
+}
+
+.hover-glow {
+  transition: box-shadow 0.3s ease;
+}
+.hover-glow:hover {
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.15), 0 0 40px rgba(99, 102, 241, 0.05);
+}
+
+/* ================================================================
+   INPUT FOCUS ENHANCEMENTS
+   ================================================================ */
+
+.input-premium {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+.input-premium:focus {
+  border-color: #818cf8 !important;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12), 0 1px 2px rgba(0, 0, 0, 0.05);
+  background-color: #fff !important;
+  outline: none;
+}
+
+.input-premium-glow {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
+}
+
+.input-premium-glow:focus {
+  border-color: #818cf8 !important;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.14), 0 12px 32px rgba(79, 70, 229, 0.12);
+  background-color: #fff !important;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+/* ================================================================
+   BUTTON PREMIUM STYLES
+   ================================================================ */
+
+.btn-primary-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 50%, #4338ca 100%);
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(79, 70, 229, 0.3), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+.btn-primary-gradient:hover {
+  box-shadow: 0 4px 16px rgba(79, 70, 229, 0.4), 0 2px 6px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+.btn-primary-gradient:active {
+  transform: translateY(0);
+}
+
+.btn-dark-gradient {
+  background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #3730a3 100%);
+  color: white;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(30, 27, 75, 0.3);
+}
+.btn-dark-gradient:hover {
+  box-shadow: 0 4px 16px rgba(30, 27, 75, 0.4);
+  transform: translateY(-1px);
+}
+
+/* ================================================================
+   SIDEBAR ACTIVE INDICATOR
+   ================================================================ */
+
+.sidebar-item-active {
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: white;
+  box-shadow: 0 2px 10px rgba(99, 102, 241, 0.35), 0 1px 3px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+.sidebar-item-active::before {
+  content: '';
+  position: absolute;
+  left: -4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: linear-gradient(to bottom, #a5b4fc, #6366f1);
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar-item-inactive {
+  transition: all 0.2s ease;
+}
+.sidebar-item-inactive:hover {
+  background: rgba(99, 102, 241, 0.06);
+  color: #4338ca;
+}
+.sidebar-item-inactive:hover .sidebar-icon {
+  color: #6366f1;
+  transform: scale(1.1);
+}
+
+.sidebar-icon {
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.mobile-bottom-nav {
+  position: fixed;
+  right: 12px;
+  left: 12px;
+  bottom: 12px;
+  padding: 0.75rem;
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12), 0 2px 12px rgba(79, 70, 229, 0.08);
+  z-index: 1100;
+}
+
+.mobile-nav-button {
+  min-height: 60px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  font-size: 10px;
+  font-weight: 800;
+  transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mobile-nav-button-active {
+  background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+  color: #ffffff;
+  box-shadow: 0 10px 24px rgba(79, 70, 229, 0.24);
+}
+
+.mobile-nav-button-inactive {
+  color: #64748b;
+}
+
+.mobile-nav-button-inactive:hover {
+  background: rgba(99, 102, 241, 0.08);
+  color: #4338ca;
+}
+
+.mobile-nav-button:active {
+  transform: translateY(1px);
+}
+
+/* ================================================================
+   STAT CARD PREMIUM STYLES
+   ================================================================ */
+
+.stat-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  opacity: 0.06;
+  transform: translate(20px, -20px);
+}
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.stat-card-emerald::before { background: #059669; }
+.stat-card-sky::before { background: #0284c7; }
+.stat-card-indigo::before { background: #4f46e5; }
+.stat-card-amber::before { background: #d97706; }
+.stat-card-rose::before { background: #e11d48; }
+
+/* ================================================================
+   TABLE PREMIUM
+   ================================================================ */
+
+.table-premium thead {
+  background: linear-gradient(135deg, #f8fafc, #eef2ff);
+}
+.table-premium tbody tr {
+  transition: background-color 0.15s ease;
+}
+.table-premium tbody tr:hover {
+  background-color: rgba(99, 102, 241, 0.03);
+}
+
+/* ================================================================
+   BADGE STYLES
+   ================================================================ */
+
+.badge-pulse {
+  position: relative;
+}
+.badge-pulse::after {
+  content: '';
+  position: absolute;
+  top: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
+  background: #ef4444;
+  border-radius: 50%;
+  animation: pulse-ring 2s infinite;
+}
+
+/* ================================================================
+   MODAL OVERLAY ENHANCEMENTS
+   ================================================================ */
+
+.modal-backdrop {
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.modal-content {
+  animation: scale-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  box-shadow:
+    0 24px 50px rgba(0, 0, 0, 0.15),
+    0 12px 24px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+/* ================================================================
+   CUSTOM SCROLLBAR — Premium
+   ================================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(148, 163, 184, 0.3), rgba(148, 163, 184, 0.5));
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, rgba(99, 102, 241, 0.4), rgba(99, 102, 241, 0.6));
+}
+
+/* ================================================================
+   PRINTING STYLES
+   ================================================================ */
+
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  
+  #print-area, #print-area * {
+    visibility: visible !important;
+  }
+  
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 10px !important;
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: "Tajawal", monospace !important;
+  }
+
+  .receipt-58mm {
+    width: 58mm !important;
+    max-width: 58mm !important;
+  }
+  
+  .receipt-80mm {
+    width: 80mm !important;
+    max-width: 80mm !important;
+  }
+}
+
+/* ================================================================
+   TOAST ENHANCEMENTS
+   ================================================================ */
+
+.toast-container {
+  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.1));
+}
+
+.toast-item {
+  position: relative;
+  overflow: hidden;
+}
+
+.toast-progress {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  height: 3px;
+  border-radius: 0 0 12px 12px;
+  animation: toast-progress 3.8s linear forwards;
+}
+
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ================================================================
+   MISC UTILITY ENHANCEMENTS
+   ================================================================ */
+
+/* Smooth all transitions globally */
+*, *::before, *::after {
+  scroll-behavior: smooth;
+}
+
+/* Number input spinners hide */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+}
+
+/* Focus visible for accessibility */
+:focus-visible {
+  outline: 2px solid #818cf8;
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ================================================================
+   UI PRIMITIVES — accessible glass controls (RTL/LTR agnostic)
+   Extends the premium design system; uses logical properties only.
+   ================================================================ */
+
+/* Haptic-style press feedback (subtle scale, no layout shift) */
+.ui-press {
+  transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease,
+    background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.ui-press:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: scale(0.97);
+}
+
+/* Spinner used by Button loading state */
+.ui-spinner {
+  width: 1em;
+  height: 1em;
+  border: 2px solid rgba(255, 255, 255, 0.45);
+  border-top-color: #ffffff;
+  border-radius: 9999px;
+  animation: spin-slow 0.6s linear infinite;
+}
+.ui-spinner-dark {
+  border-color: rgba(99, 102, 241, 0.25);
+  border-top-color: #6366f1;
+}
+
+/* Custom checkbox / radio marks */
+.ui-check-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 7px;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  transition: border-color 0.18s ease, background-color 0.18s ease, transform 0.12s ease;
+}
+.ui-check-box[data-checked="true"] {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+.ui-check-box[data-checked="true"]:hover {
+  background: linear-gradient(135deg, #4f46e5, #3730a3);
+}
+.ui-radio-dot {
+  display: inline-block;
+  width: 45%;
+  height: 45%;
+  border-radius: 9999px;
+  background: #ffffff;
+  transform: scale(0);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.ui-radio-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid #cbd5e1;
+  background: #ffffff;
+  transition: border-color 0.18s ease, background-color 0.18s ease;
+}
+.ui-radio-circle[data-checked="true"] {
+  border-color: #6366f1;
+  background: linear-gradient(135deg, #6366f1, #4338ca);
+}
+.ui-radio-circle[data-checked="true"] .ui-radio-dot {
+  transform: scale(1);
+}
+
+/* Switch thumb slide */
+.ui-switch-thumb {
+  display: inline-block;
+  border-radius: 9999px;
+  background: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2), 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Segmented control pill */
+.ui-segment {
+  position: relative;
+  transition: color 0.2s ease;
+}
+
+/* Slider (range) */
+.ui-range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 6px;
+  border-radius: 9999px;
+  background: linear-gradient(to right, #6366f1, #06b6d4);
+  outline: none;
+}
+.ui-range:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+.ui-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #6366f1;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.2s ease;
+}
+.ui-range::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+.ui-range::-webkit-slider-thumb:active {
+  transform: scale(1.05);
+  box-shadow: 0 0 0 6px rgba(99, 102, 241, 0.15);
+}
+.ui-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 2px solid #6366f1;
+  box-shadow: 0 2px 6px rgba(79, 70, 229, 0.3);
+  cursor: pointer;
+}
+
+/* Native date/time/safari pseudo-icon alignment for RTL */
+.ui-native-field::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s ease;
+}
+.ui-native-field::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Popover / menu scroll area (taller, themed scrollbar) */
+.ui-popover-scroll {
+  max-height: min(60vh, 360px);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(99, 102, 241, 0.4) transparent;
+}
+.ui-popover-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+.ui-popover-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, rgba(99, 102, 241, 0.35), rgba(6, 182, 212, 0.45));
+  border-radius: 9999px;
+}
+
+/* Chip / tag (multiselect) */
+.ui-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.125rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.12), rgba(6, 182, 212, 0.1));
+  color: #3730a3;
+  border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+/* Tooltip arrow-less glass */
+.ui-tooltip {
+  background: rgba(30, 27, 75, 0.95);
+  color: #ffffff;
+  border-radius: 0.5rem;
+  padding: 0.375rem 0.625rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+  max-width: 16rem;
+}
+
+/* Listbox option states */
+.ui-option {
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+.ui-option[data-active="true"] {
+  background: rgba(99, 102, 241, 0.1);
+  color: #3730a3;
+}
+
+/* Dropzone */
+.ui-dropzone {
+  transition: border-color 0.2s ease, background-color 0.2s ease, transform 0.12s ease;
+}
+.ui-dropzone[data-dragging="true"] {
+  border-color: #6366f1;
+  background: rgba(99, 102, 241, 0.06);
+  transform: scale(1.005);
+}
+
+/* Hide number input spinners (we render custom steppers) */
+.ui-number-input::-webkit-outer-spin-button,
+.ui-number-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.ui-number-input {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Respect reduced motion globally for primitive animations */
+@media (prefers-reduced-motion: reduce) {
+  .ui-press,
+  .ui-check-box,
+  .ui-radio-circle,
+  .ui-switch-thumb,
+  .ui-range,
+  .ui-dropzone {
+    transition: none !important;
+  }
+  .ui-press:active:not(:disabled):not([aria-disabled="true"]) {
+    transform: none !important;
+  }
+}
+

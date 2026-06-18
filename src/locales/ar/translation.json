@@ -1,0 +1,726 @@
+{
+  "app": {
+    "brand": "نظام البيع الذكي",
+    "version": "v2.4",
+    "roles": {
+      "admin": "مدير",
+      "cashier": "كاشير"
+    },
+    "loading": {
+      "authCheck": "جاري التحقق من جلسة المستخدم",
+      "authDesc": "يتم الآن تجهيز بوابة الدخول المرتبطة بـ Supabase.",
+      "dataLoad": "جاري تحميل بيانات المتجر",
+      "dataDesc": "تم تسجيل الدخول بنجاح، ويتم الآن جلب بياناتك المحفوظة وصلاحياتك من Supabase."
+    },
+    "header": {
+      "fullscreen": "ملء الشاشة الكاملة",
+      "exitFullscreen": "إنهاء ملء الشاشة",
+      "shortcuts": "الاختصارات",
+      "shortcutsTitle": "عرض اختصارات لوحة المفاتيح والتعليمات (F1)",
+      "shortcutsLabel": "عرض اختصارات لوحة المفاتيح والتعليمات",
+      "signOut": "خروج",
+      "signOutTitle": "تسجيل الخروج",
+      "signOutLabel": "تسجيل الخروج"
+    },
+    "sidebar": {
+      "gateways": "بوابات النظام",
+      "connected": "متصل • وضع الأوفلاين نشط",
+      "storeProtected": "سوبرماركت التجزئة المحمي",
+      "versionProtected": "الإصدار 2.4 • محمي بالكامل"
+    },
+    "shortcuts": {
+      "title": "دليل الاختصارات السريعة",
+      "closeLabel": "إغلاق نافذة الاختصارات",
+      "barcodeFocus": "توجيه وتركيز مؤشر الباركود فورياً",
+      "checkout": "إتمام عملية الفوترة والدفع المباشر",
+      "clearCart": "إفراغ مسح سلة المشتريات بالكامل",
+      "toggleHelp": "فتح / إغلاق واجهة الدليل الحالية",
+      "closeDialog": "إلغاء وإغلاق أي نافذة حوار منبثقة",
+      "footnote": "* تعمل هذه الاختصارات تلقائياً أينما كنت داخل واجهات الكاشير لسرعة الأداء التجاري.",
+      "understood": "فهمت ذلك"
+    },
+    "errors": {
+      "syncFailed": "تعذر مزامنة بيانات المتجر مع الخادم حالياً.",
+      "signOutFailed": "تعذر تسجيل الخروج حالياً.",
+      "profileLoadFailed": "تعذر تحميل دور المستخدم من الخادم. تم استخدام صلاحية الكاشير افتراضياً.",
+      "dataLoadFailed": "تعذر تحميل بيانات المتجر من الخادم. تحقق من إعدادات Supabase والواجهة الخلفية.",
+      "supabaseConfig": "أضف رابط Supabase العام ومفتاح anon في config.js أولاً لتفعيل شاشة الدخول."
+    },
+    "toasts": {
+      "saleSuccess": "تم تخطيط وتسجيل مبيعات الفاتورة {{invoiceNo}} بنجاح!"
+    }
+  },
+  "nav": {
+    "pos": {
+      "label": "شاشة الكاشير",
+      "shortLabel": "الكاشير",
+      "description": "واجهة بيع سريعة مصممة للمسح، البحث، وإنهاء الفواتير بأقل عدد من الخطوات."
+    },
+    "products": {
+      "label": "إدارة المنتجات",
+      "shortLabel": "المنتجات",
+      "description": "تنظيم الكتالوج، تحديث الأسعار، وطباعة ملصقات الباركود من شاشة واحدة."
+    },
+    "inventory": {
+      "label": "المخزون والجرد",
+      "shortLabel": "المخزون",
+      "description": "متابعة الكميات، التسويات، والتنبيهات الحرجة مع سجل حركات واضح وفوري."
+    },
+    "reports": {
+      "label": "التقارير والمبيعات",
+      "shortLabel": "التقارير",
+      "description": "رؤية يومية وشهرية للفواتير والإيرادات مع عرض فوري لسجل المبيعات."
+    },
+    "settings": {
+      "label": "إعدادات النظام",
+      "shortLabel": "الإعدادات",
+      "description": "ضبط بيانات المتجر، الضرائب، والتنبيهات العامة لتنعكس على كامل التجربة."
+    },
+    "backup": {
+      "label": "النسخ الاحتياطي",
+      "shortLabel": "النسخ",
+      "description": "تصدير واستعادة بيانات النظام محلياً مع واجهة أوضح لسلامة البيانات."
+    }
+  },
+  "viewSummary": {
+    "pos": {
+      "eyebrow": "مركز البيع المباشر",
+      "title": "كل ما يحتاجه الكاشير لإنهاء عملية البيع بسرعة ووضوح.",
+      "statAvailableProducts": "المنتجات المتاحة",
+      "statCartUnits": "وحدات السلة",
+      "statTodayInvoices": "فواتير اليوم"
+    },
+    "products": {
+      "eyebrow": "مركز الكتالوج",
+      "title": "مراجعة الأصناف، الأسعار، والتنبيهات قبل أن تؤثر على عملية البيع.",
+      "statTotalItems": "إجمالي الأصناف",
+      "statCategories": "التصنيفات",
+      "statOutOfStock": "نفد مخزونها"
+    },
+    "inventory": {
+      "eyebrow": "غرفة مراقبة المخزون",
+      "title": "لوحة مركزة لمراقبة الكميات الحرجة وحركات الجرد في لحظتها.",
+      "statTotalUnits": "إجمالي الوحدات",
+      "statLowStock": "منخفضة المخزون",
+      "statMovements": "سجل الحركات"
+    },
+    "reports": {
+      "eyebrow": "لوحة الأداء التجاري",
+      "title": "قراءة أسرع للفواتير والإيرادات مع وصول مباشر لسجل المبيعات.",
+      "statTotalInvoices": "إجمالي الفواتير",
+      "statTodaySales": "مبيعات اليوم",
+      "statMonthInvoices": "فواتير الشهر"
+    },
+    "settings": {
+      "eyebrow": "ضبط بيئة التشغيل",
+      "title": "إعدادات موحدة تحافظ على تناسق الفواتير والتنبيهات داخل النظام.",
+      "statStoreName": "اسم المتجر",
+      "statTax": "الضريبة",
+      "statAlertThreshold": "حد التنبيه"
+    },
+    "backup": {
+      "eyebrow": "سلامة البيانات",
+      "title": "واجهة أوضح لتأمين السجلات قبل النقل أو الاستعادة على أي جهاز آخر.",
+      "statItems": "الأصناف",
+      "statInvoices": "الفواتير",
+      "statMovements": "الحركات"
+    }
+  },
+  "auth": {
+    "brand": "نظام البيع الذكي",
+    "secureAccessLayer": "Secure Access Layer",
+    "supabase": "Supabase",
+    "loginGatewayBadge": "بوابة تسجيل دخول مرتبطة بـ Supabase",
+    "signInHeading": "سجّل الدخول أولاً قبل الوصول إلى بيانات المتجر ولوحات التشغيل.",
+    "supabaseAuthDesc": "تم تجهيز الواجهة لتعمل مع Supabase Auth بحيث تصبح بيانات كل مستخدم معزولة، ويُسمح بالوصول إلى التطبيق فقط بعد المصادقة.",
+    "accountProvisionNote": "يتم إنشاء الحسابات فقط من لوحة Supabase. هذه الصفحة مخصصة لتسجيل دخول المستخدمين الموجودين فقط.",
+    "features": {
+      "protectedAccounts": "حسابات محمية",
+      "protectedAccountsDesc": "دخول مشفر وآمن",
+      "restrictedAccess": "وصول مقيد",
+      "restrictedAccessDesc": "صلاحيات حسب الدور",
+      "emailLogin": "دخول بالبريد",
+      "emailLoginDesc": "بريدك هو مفتاح الدخول"
+    },
+    "tabs": {
+      "login": "تسجيل الدخول",
+      "register": "إنشاء حساب"
+    },
+    "fields": {
+      "email": "البريد الإلكتروني",
+      "emailPlaceholder": "أدخل بريدك الإلكتروني",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور"
+    },
+    "buttons": {
+      "login": "دخول إلى النظام",
+      "register": "إنشاء الحساب",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "resendConfirmation": "إعادة إرسال تأكيد البريد"
+    },
+    "errors": {
+      "invalidCredentials": "البريد الإلكتروني أو كلمة المرور غير صحيحة.",
+      "emailNotConfirmed": "البريد الإلكتروني لم يتم تأكيده بعد. تحقق من صندوق الوارد.",
+      "supabaseNotConfigured": "إعدادات Supabase غير مكتملة. تعذر تسجيل الدخول.",
+      "registrationFailed": "تعذر إنشاء الحساب. حاول مرة أخرى.",
+      "resetFailed": "تعذر إرسال رابط استعادة كلمة المرور. حاول مرة أخرى.",
+      "resendFailed": "تعذر إعادة إرسال رابط التأكيد. حاول مرة أخرى.",
+      "emailRequiredForReset": "أدخل البريد الإلكتروني أولاً لإرسال رابط استعادة كلمة المرور.",
+      "emailRequiredForResend": "أدخل البريد الإلكتروني أولاً لإعادة إرسال رسالة التأكيد."
+    },
+    "status": {
+      "resetSent": "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني.",
+      "resendSent": "تم إرسال رابط التأكيد إلى بريدك الإلكتروني.",
+      "registrationSuccess": "تم إنشاء الحساب. تحقق من بريدك الإلكتروني لتأكيد الحساب."
+    },
+    "configError": {
+      "title": "إعدادات Supabase مفقودة",
+      "description": "أضف رابط Supabase العام ومفتاح anon إلى config.js."
+    }
+  },
+  "passwordRecovery": {
+    "title": "استعادة كلمة المرور",
+    "supabaseDesc": "أدخل كلمة مرور جديدة لحساب Supabase",
+    "heading": "تحديث كلمة المرور",
+    "description": "تم التحقق من رابط الاستعادة. أدخل كلمة مرور جديدة ثم أكمل الدخول إلى النظام.",
+    "fields": {
+      "newPassword": "كلمة المرور الجديدة",
+      "confirmPassword": "تأكيد كلمة المرور"
+    },
+    "buttons": {
+      "submit": "حفظ كلمة المرور الجديدة",
+      "submitting": "جاري تحديث كلمة المرور..."
+    },
+    "errors": {
+      "supabaseNotConfigured": "إعدادات Supabase غير مكتملة في بيئة التشغيل.",
+      "passwordTooShort": "كلمة المرور الجديدة يجب أن تحتوي على 6 أحرف على الأقل.",
+      "passwordMismatch": "تأكيد كلمة المرور لا يطابق الكلمة الجديدة.",
+      "updateFailed": "تعذر تحديث كلمة المرور حالياً."
+    },
+    "status": {
+      "success": "تم تحديث كلمة المرور بنجاح. يمكنك الآن الدخول إلى النظام."
+    }
+  },
+  "pos": {
+    "barcodeLabel": "الباركود",
+    "barcodePlaceholder": "أدخل الباركود أو امسحه...",
+    "barcodeScanPlaceholder": "امسح الباركود واضغط Enter للكاشير...",
+    "manualSearchPlaceholder": "ابحث بالاسم أو الباركود يدوياً لسرعة البحث...",
+    "searchProductsPlaceholder": "ابحث عن المنتجات...",
+    "quickAccess": "وصول سريع",
+    "quickAccessPanelTitle": "لوحة الوصول السريع لمنتجات الكاشير الأكثر طلبًا",
+    "quickAccessOneClick": "بنقرة واحدة",
+    "quickAccessHide": "إخفاء اللوحة",
+    "quickAccessShow": "عرض اللوحة",
+    "allCategories": "الكل",
+    "stockBadge": {
+      "outOfStock": "نفذ",
+      "unit_zero": "{{count}} حبات",
+      "unit_one": "حبة",
+      "unit_two": "حبتان",
+      "unit_few": "{{count}} حبات",
+      "unit_many": "{{count}} حبة",
+      "unit_other": "{{count}} حبة",
+      "wafra": "وفرة",
+      "wafraCount": "وفرة: {{count}}"
+    },
+    "stats": {
+      "searchResults": "نتائج البحث الحالية",
+      "cartUnits": "وحدات السلة",
+      "lowStockInView": "أصناف منخفضة بالمشهد الحالي",
+      "quickProducts": "المنتجات السريعة"
+    },
+    "cart": {
+      "title": "سلة الفوترة الحالية",
+      "empty": "السلة فارغة",
+      "emptyDesc": "ابحث أو امسح باركود لإضافة منتجات",
+      "emptyTitle": "السلة فارغة حالياً",
+      "emptyHint": "اضغط على الأصناف أو امسح الباركود للابتداء",
+      "removeItem": "إزالة",
+      "discountLabel": "تخفيض",
+      "discountPercent": "نسبة %",
+      "discountAmount": "مبلغ ر.س",
+      "discountNone": "بدون",
+      "discountsAvailable": "الخصومات المتاحة",
+      "discountsTotal": "الخصومات الكلية المطبقة:",
+      "subtotal": "المجموع الفرعي",
+      "discounts": "الخصومات",
+      "tax": "ضريبة القيمة المضافة",
+      "total": "الإجمالي النهائي للدفع",
+      "checkout": "إتمام الفوترة",
+      "checkoutBtn": "إتمام البيع والفوترة (F4)",
+      "flatDiscountPlaceholder": "ادخل مبلغ الخصم المباشر بالريال...",
+      "decreaseQty": "إنقاص الكمية",
+      "increaseQty": "زيادة الكمية",
+      "clearCart": "مسح السلة",
+      "clearCartLabel": "مسح السلة الكاملة"
+    },
+    "emptySearch": {
+      "title": "لا توجد منتجات مطابقة للبحث",
+      "description": "يرجى التحقق من المدخلات أو إضافة بضاعة جديدة للنظام"
+    },
+    "checkout": {
+      "title": "إتمام عملية البيع",
+      "closeLabel": "إغلاق نافذة الدفع",
+      "totalDue": "المطلوب سداده إجمالاً",
+      "choosePayment": "اختر نوع الدفع:",
+      "paymentMethod": "طريقة الدفع",
+      "cash": "دفع نقدي",
+      "cashFull": "دفع نقدي (كاش)",
+      "card": "بطاقة مدى",
+      "cardFull": "بطاقة مدى / ائتمان",
+      "mobile": "دفع جوال",
+      "mobileFull": "دفع جوالApple Pay",
+      "cashPaidLabel": "المبلغ المدفوع",
+      "cashPaidByCustomer": "المبلغ المدفوع من العميل:",
+      "cashPaidPlaceholder": "المبلغ المستلم",
+      "cashInputPlaceholder": "ادخل الكاش المستلم...",
+      "amountRequired": "{{total}} ر.س مطلوبة",
+      "exact": "بالمظبوط",
+      "changeOwed": "الباقي المطلوب إرجاعه",
+      "changeDueCustomer": "الباقي المطلوب إرجاعه للعميل:",
+      "confirmPay": "تأكيد الدفع وإصدار الفاتورة",
+      "confirmAndPrint": "تسجيل وطباعة الفاتورة",
+      "continueShopping": "استكمال الشراء",
+      "cancel": "إلغاء",
+      "insufficientCash": "المبلغ المدفوع أقل من الإجمالي",
+      "insufficientCashFull": "مبلغ الكاش المدفوع أقل من إجمالي الفاتورة ({{total}} ر.س)"
+    },
+    "toasts": {
+      "barcodeFocused": "تم تركيز حقل الباركود",
+      "cartEmptyAlert": "السلة فارغة!",
+      "productNotFound": "لم يتم العثور على المنتج",
+      "productNotFoundBarcode": "رقم الباركود \"{{barcode}}\" غير مسجل بالصيدلية/المحل!",
+      "productOutOfStock": "المنتج \"{{name}}\" غير متوفر في المخزن!",
+      "outOfStock": "{{name}} — نفذت الكمية",
+      "productExhausted": "هذا المنتج نفذ من المخزن!",
+      "exceedStock": "لا يمكنك تجاوز المخزون الحالي ({{count}} حبة)",
+      "stockLimitReached": "عذراً، الكمية المتوفرة بالمخزن هي {{count}} فقط",
+      "added": "تمت الإضافة: {{name}}",
+      "itemRemoved": "تمت إزالة {{name}} من السلة",
+      "cartCleared": "تم إفراغ سلة المشتريات بالكامل",
+      "checkoutSuccess": "تمت الفوترة بنجاح",
+      "checkoutError": "تعذر إتمام الفوترة"
+    }
+  },
+  "products": {
+    "pageTitle": "إدارة المنتجات",
+    "addProduct": "إضافة منتج",
+    "editProduct": "تعديل المنتج",
+    "searchPlaceholder": "ابحث في المنتجات...",
+    "filterCategory": "الفئة",
+    "allCategories": "الكل",
+    "pageSubtitle": "تعديل أسعار المخزون، إضافة بضاعة جديدة أو ترتيب التصنيفات.",
+    "table": {
+      "image": "الصورة",
+      "name": "اسم المنتج",
+      "barcode": "الباركود",
+      "category": "الفئة",
+      "price": "السعر",
+      "stock": "المخزون",
+      "lowStockAlert": "تنبيه نقص",
+      "actions": "الإجراءات",
+      "selectAll": "تحديد كل المنتجات المطابقة",
+      "empty": "لا توجد سجلات مطابقة في المخزون",
+      "selectProduct": "تحديد المنتج {{name}}",
+      "noImage": "بلا صورة",
+      "editLabel": "تعديل بيانات المنتج",
+      "deleteLabel": "حذف المنتج نهائياً"
+    },
+    "stockBadge": {
+      "outOfStock": "نفذت الكمية",
+      "lowStock": "منخفض جداً",
+      "adequate": "كافٍ"
+    },
+    "form": {
+      "name": "اسم المنتج",
+      "namePlaceholder": "أدخل اسم المنتج",
+      "barcode": "الباركود",
+      "barcodePlaceholder": "أدخل الباركود أو اتركه فارغاً",
+      "regenerateBarcode": "توليد تلقائي جديد",
+      "category": "الفئة",
+      "price": "السعر",
+      "stock": "الكمية الأولية",
+      "lowStockAlert": "تنبيه نقص المخزون",
+      "imageUrl": "رابط الصورة (اختياري)",
+      "imageUrlPlaceholder": "https://...",
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "addNew": "إضافة منتج جديد",
+      "editExisting": "تعديل بيانات المنتج"
+    },
+    "barcodePrint": {
+      "title": "طباعة ملصق الباركود",
+      "quantity": "عدد الملصقات",
+      "label_zero": "{{count}} ملصقات",
+      "label_one": "ملصق واحد",
+      "label_two": "ملصقان",
+      "label_few": "{{count}} ملصقات",
+      "label_many": "{{count}} ملصقاً",
+      "label_other": "{{count}} ملصق",
+      "print": "طباعة",
+      "cancel": "إلغاء",
+      "setBulkCopiesLabel": "تعيين عدد النسخ للكل:",
+      "setBulkCopiesDesc": "تغيير كمية طباعة الملصقات لجميع الأصناف المحددة دفعة واحدة.",
+      "defaultCopiesLabel": "عدد النسخ الافتراضي",
+      "applyToAll": "تطبيق على الكل",
+      "selectedListTitle": "قائمة الأصناف المحددة للطباعة:",
+      "productInfo": "باركود: {{barcode}} • السعر: {{price}} ر.س",
+      "previewTitle": "معاينة شكل ملصقات الباركود قبل الطباعة:",
+      "totalLabelsLabel": "إجمالي كمية الملصقات للطباعة:",
+      "printSheetTitle": "ملصقات باركود المنتجات",
+      "priceTag": "السعر: {{price}} ر.س"
+    },
+    "bulk": {
+      "selected_zero": "لم يتم تحديد أي صنف",
+      "selected_one": "صنف واحد محدد",
+      "selected_two": "صنفان محددان",
+      "selected_few": "{{count}} أصناف محددة",
+      "selected_many": "{{count}} صنفاً محدداً",
+      "selected_other": "{{count}} صنف محدد",
+      "deleteSelected": "حذف المحدد",
+      "printBarcodes": "طباعة الباركودات"
+    },
+    "toasts": {
+      "addSuccess": "تمت إضافة {{name}} بنجاح",
+      "editSuccess": "تم تحديث {{name}} بنجاح",
+      "deleteSuccess": "تم حذف المنتج بنجاح",
+      "deleteFailed": "تعذر حذف المنتج",
+      "barcodeDuplicate": "الباركود {{barcode}} مستخدم بالفعل",
+      "bulkDeleteSuccess": "تم حذف {{count}} منتجات",
+      "nameRequired": "اسم المنتج مطلوب",
+      "priceInvalid": "السعر يجب أن يكون أكبر من صفر",
+      "validationError": "يرجى تعبئة كافة الحقول بشكل صحيح وبأسعار موجبة!",
+      "barcodeRegenerated": "تمت إعادة توليد باركود تلقائي فريد",
+      "bulkCopiesSet": "تم تعيين عدد النسخ إلى {{count}} لجميع المنتجات المحددة"
+    },
+    "confirmDelete": {
+      "title": "حذف المنتج",
+      "message": "هل أنت متأكد من حذف المنتج \"{{name}}\"؟ لا يمكن التراجع عن هذا الإجراء."
+    }
+  },
+  "inventory": {
+    "pageTitle": "المخزون والجرد",
+    "metrics": {
+      "totalUnits": "إجمالي الوحدات",
+      "lowStock": "منخفض المخزون",
+      "outOfStock": "نفد المخزون",
+      "movements": "إجمالي الحركات",
+      "totalProducts": "إجمالي الأصناف الموثقة",
+      "catalogBadge": "كتالوج",
+      "itemsInCashier": "صنف في الكاشير",
+      "totalWarehouseUnits": "إجمالي وحدات المخزن",
+      "assetsBadge": "موجودات",
+      "saleUnit": "وحدة بيع",
+      "nearlyOutOfStock": "أصناف توشك على النفاذ",
+      "alertBadge": "تنبيه",
+      "belowSafetyLevel": "تحت حد الأمان",
+      "completelyOutOfStock": "أصناف منتهية بالكامل",
+      "criticalBadge": "حرج",
+      "needsImmediateSupply": "بحاجة لتوريد فوري"
+    },
+    "adjust": {
+      "title": "تسوية المخزون",
+      "subtitle": "تعديل فوري للكميات المتوفرة في المستودع مع تدوين أسباب التعديل.",
+      "productLabel": "المنتج",
+      "productPlaceholder": "اختر منتجاً",
+      "typeLabel": "نوع التسوية",
+      "typeAdd": "إدخال",
+      "typeSubtract": "إخراج",
+      "typeAdjust": "تحديث",
+      "quantityLabel": "الكمية",
+      "quantityLabelNew": "كمية المخزون الإجمالية الجديدة:",
+      "quantityLabelDelta": "الكمية المطلوب تعديلها بالزيادة/النقصان:",
+      "quantityPlaceholder": "الوحدات المستهدفة...",
+      "notesLabel": "ملاحظات",
+      "notesPlaceholder": "أدخل ملاحظات الحركة...",
+      "submitButton": "تأكيد التسوية",
+      "currentStock": "المخزون الحالي"
+    },
+    "history": {
+      "title": "سجل حركات المخزون",
+      "subtitle": "كشف حركات التوريد والزيادة والتسوية والصرف الناتجة تلقائياً عن المبيعات.",
+      "searchPlaceholder": "ابحث في السجل...",
+      "columns": {
+        "datetime": "التاريخ والوقت",
+        "product": "المنتج",
+        "productName": "اسم الصنف",
+        "type": "النوع",
+        "movementType": "نوع الحركة",
+        "quantity": "الكمية",
+        "notes": "الملاحظات",
+        "detailedNotes": "ملاحظات توضيحية"
+      },
+      "types": {
+        "sale": "مبيعات",
+        "supply": "توريد شحنة",
+        "deficit": "عجز",
+        "damaged": "تالف",
+        "deficitDamaged": "عجز/تالف",
+        "adjust": "تسوية جرد",
+        "add": "إضافة",
+        "subtract": "خصم"
+      },
+      "empty": "لا توجد حركات مخزون مسجلة",
+      "systemNote": "نظام الجرد متوافق تماماً مع حركات صناديق الفوترة الفورية."
+    },
+    "unit_zero": "{{count}} حبات",
+    "unit_one": "حبة",
+    "unit_two": "حبتان",
+    "unit_few": "{{count}} حبات",
+    "unit_many": "{{count}} حبة",
+    "unit_other": "{{count}} حبة",
+    "toasts": {
+      "adjustSuccess": "تمت تسوية المخزون بنجاح",
+      "adjustFailed": "تعذر تسوية المخزون",
+      "productRequired": "يرجى اختيار منتج",
+      "invalidQuantity": "يرجى كتابة كمية صحيحة (أكبر من الصفر)!",
+      "exceedStock": "لا يمكن خصم كمية أكبر من المتوفر الحالي ({{count}} حبة)"
+    }
+  },
+  "reports": {
+    "pageTitle": "التقارير والمبيعات",
+    "tabs": {
+      "overview": "نظرة عامة",
+      "invoices": "سجل الفواتير",
+      "charts": "الرسوم البيانية"
+    },
+    "stats": {
+      "todaySales": "مبيعات اليوم",
+      "todayInvoices": "فواتير اليوم",
+      "week7Sales": "مبيعات الـ 7 أيام الماضية",
+      "monthSales": "مبيعات الشهر",
+      "monthInvoices": "فواتير الشهر",
+      "avgInvoice": "متوسط الفاتورة",
+      "totalRevenue": "إجمالي الإيرادات",
+      "invoiceCount_zero": "{{count}} فواتير",
+      "invoiceCount_one": "فاتورة واحدة",
+      "invoiceCount_two": "فاتورتان",
+      "invoiceCount_few": "{{count}} فواتير",
+      "invoiceCount_many": "{{count}} فاتورة",
+      "invoiceCount_other": "{{count}} فاتورة",
+      "allTimeInvoiceCount": "{{count}} فاتورة كلي"
+    },
+    "invoiceTable": {
+      "searchPlaceholder": "ابحث برقم الفاتورة...",
+      "searchAriaLabel": "ابحث برقم الفاتورة",
+      "dateFilterAriaLabel": "فلترة حسب تاريخ الفاتورة",
+      "columns": {
+        "invoiceNumber": "رقم الفاتورة",
+        "datetime": "التاريخ والوقت",
+        "items": "الأصناف",
+        "subtotal": "المجموع الفرعي",
+        "discount": "الخصم",
+        "tax": "الضريبة",
+        "total": "الإجمالي",
+        "payment": "طريقة الدفع",
+        "actions": "الإجراءات"
+      },
+      "paymentMethods": {
+        "cash": "كاش",
+        "card": "مدى",
+        "mobile": "جوال"
+      },
+      "empty": "لا توجد فواتير مسجلة",
+      "viewReceipt": "عرض الفاتورة",
+      "deleteInvoice": "حذف الفاتورة"
+    },
+    "itemCount_zero": "{{count}} أصناف",
+    "itemCount_one": "صنف واحد",
+    "itemCount_two": "صنفان",
+    "itemCount_few": "{{count}} أصناف",
+    "itemCount_many": "{{count}} صنفاً",
+    "itemCount_other": "{{count}} صنف",
+    "receipt": {
+      "title": "عرض الفاتورة",
+      "paperSize": "حجم الورق",
+      "paperA4": "A4",
+      "paperThermal": "حراري 80mm",
+      "thermal58": "رول كاشير صغير (58 مم)",
+      "thermal80": "رول قياسي عريض (80 مم)",
+      "print": "طباعة",
+      "close": "إغلاق"
+    },
+    "confirmDelete": {
+      "title": "حذف الفاتورة",
+      "message": "هل أنت متأكد من حذف الفاتورة رقم {{invoiceNumber}}؟ لا يمكن التراجع عن هذا الإجراء."
+    },
+    "toasts": {
+      "deleteSuccess": "تم حذف الفاتورة بنجاح",
+      "deleteFailed": "تعذر حذف الفاتورة"
+    }
+  },
+  "settings": {
+    "pageTitle": "إعدادات النظام",
+    "saveButton": "حفظ الإعدادات",
+    "sectionTitle": "تكوين إعدادات المتجر ونقاط البيع",
+    "sectionSubtitle": "ثبّت تفاصيل الفواتير، شعار المؤسسة، وضريبة القيمة المضافة المحتسبة.",
+    "fields": {
+      "storeName": "اسم المتجر",
+      "storeNamePlaceholder": "أدخل اسم المتجر",
+      "storePhone": "رقم الهاتف",
+      "storePhonePlaceholder": "05xxxxxxxx",
+      "storeAddress": "العنوان",
+      "storeAddressPlaceholder": "أدخل عنوان المتجر",
+      "taxPercentage": "نسبة ضريبة القيمة المضافة (%)",
+      "lowStockAlertQty": "حد تنبيه انخفاض المخزون (حبات)",
+      "currencySymbol": "رمز العملة",
+      "currencySymbolPlaceholder": "ر.س",
+      "footerNote": "نص تذييل الفاتورة",
+      "footerNotePlaceholder": "شكراً لتسوقكم معنا"
+    },
+    "warnings": {
+      "taxWarning": "تغيير نسبة الضريبة سيؤثر على الفواتير الجديدة فقط، ولن يغير الفواتير القديمة.",
+      "taxRangeError": "خطأ: خانة الضريبة المضافة يجب أن تقع بين 0% و 100%!",
+      "lowStockQtyError": "خطأ: كمية تنبيه المخازن المنخفض يجب أن تكون أكبر من الصفر!"
+    },
+    "toasts": {
+      "saveSuccess": "تم حفظ الإعدادات بنجاح",
+      "saveFailed": "تعذر حفظ الإعدادات",
+      "storeNameRequired": "اسم المتجر مطلوب"
+    }
+  },
+  "backup": {
+    "pageTitle": "النسخ الاحتياطي واستعادة البيانات",
+    "overviewSubtitle": "قم بحفظ نسخة مأمنة من الكتالوج والسجلات التجارية لضمان الأمان أو لنقلها لجهاز آخر.",
+    "export": {
+      "title": "تصدير البيانات",
+      "description": "تصدير جميع بيانات النظام إلى ملف JSON للنسخ الاحتياطي.",
+      "products_zero": "{{count}} أصناف",
+      "products_one": "صنف واحد",
+      "products_two": "صنفان",
+      "products_few": "{{count}} أصناف",
+      "products_many": "{{count}} صنفاً",
+      "products_other": "{{count}} صنف",
+      "invoices_zero": "{{count}} فواتير",
+      "invoices_one": "فاتورة واحدة",
+      "invoices_two": "فاتورتان",
+      "invoices_few": "{{count}} فواتير",
+      "invoices_many": "{{count}} فاتورة",
+      "invoices_other": "{{count}} فاتورة",
+      "categories": "الفئات",
+      "settingsLabel": "الإعدادات",
+      "stockLogs": "سجل المخزون",
+      "includesStockAndConfig": "يشمل حركة المخازن وملفات التهيئة العامة",
+      "button": "تصدير النسخة الاحتياطية"
+    },
+    "import": {
+      "title": "استعادة البيانات",
+      "description": "استعادة البيانات من ملف JSON محفوظ مسبقاً. سيتم استبدال جميع البيانات الحالية.",
+      "prompt": "اسحب ملف النسخة الاحتياطية هنا أو اضغط للاختيار",
+      "buttonText": "اختيار ملف النسخة",
+      "fileTypeNote": "الملفات المدعومة: JSON فقط",
+      "warning": "تحذير: ستُستبدل جميع البيانات الحالية بما في الملف المستورد.",
+      "warningTitle": "تحذير أمان عمليات استعادة الفايل والدمج:",
+      "confirmTitle": "استعادة النسخة الاحتياطية",
+      "confirmMessage": "هل أنت متأكد من استعادة النسخة الاحتياطية؟ سيتم استبدال جميع البيانات الحالية وهذا الإجراء لا يمكن التراجع عنه.",
+      "confirmButton": "استعادة الآن"
+    },
+    "toasts": {
+      "exportSuccess": "تم تصدير النسخة الاحتياطية بنجاح",
+      "exportFailed": "تعذر تصدير النسخة الاحتياطية",
+      "importSuccess": "تمت استعادة البيانات بنجاح",
+      "importFailed": "تعذر استعادة البيانات. تأكد من صحة الملف.",
+      "invalidFile": "ملف غير صالح. يرجى اختيار ملف JSON صحيح."
+    }
+  },
+  "receipt": {
+    "phone": "هاتف:",
+    "invoiceNumber": "رقم الفاتورة:",
+    "date": "التاريخ:",
+    "time": "الوقت:",
+    "paymentMethod": "طريقة الدفع:",
+    "paymentMethods": {
+      "cash": "نقدي",
+      "card": "بطاقة مدى",
+      "mobile": "دفع جوال"
+    },
+    "table": {
+      "item": "الصنف",
+      "quantity": "الكمية",
+      "total": "المجموع"
+    },
+    "subtotal": "المجموع الفرعي",
+    "discount": "الخصم",
+    "tax": "الضريبة",
+    "finalTotal": "الإجمالي النهائي",
+    "cashPaid": "المبلغ المدفوع",
+    "change": "المتبقي للعميل",
+    "footerAuto": "هذه الفاتورة صادرة بشكل تلقائي من نظام البيع الذكي"
+  },
+  "charts": {
+    "salesChart": {
+      "title": "الأداء اليومي للمبيعات",
+      "subtitle": "المبيعات والفواتير لكل يوم",
+      "empty": "لا توجد بيانات مبيعات لعرضها"
+    },
+    "bestSellers": {
+      "title": "الأصناف الأكثر مبيعاً",
+      "subtitle": "أعلى المنتجات مبيعاً بالكميات",
+      "empty": "لا توجد بيانات مبيعات لعرضها",
+      "unit_zero": "{{count}} وحدات",
+      "unit_one": "وحدة",
+      "unit_two": "وحدتان",
+      "unit_few": "{{count}} وحدات",
+      "unit_many": "{{count}} وحدة",
+      "unit_other": "{{count}} وحدة",
+      "footerNote": "البيانات مستخرجة من سجل الفواتير المحلية",
+      "total": "المجموع: {{total}} {{currency}}"
+    }
+  },
+  "common": {
+    "actions": {
+      "save": "حفظ",
+      "cancel": "إلغاء",
+      "confirm": "تأكيد",
+      "delete": "حذف",
+      "edit": "تعديل",
+      "add": "إضافة",
+      "close": "إغلاق",
+      "print": "طباعة",
+      "export": "تصدير",
+      "import": "استيراد",
+      "search": "بحث",
+      "clear": "مسح",
+      "back": "رجوع",
+      "done": "تم"
+    },
+    "status": {
+      "loading": "جاري التحميل...",
+      "saving": "جاري الحفظ...",
+      "success": "نجاح",
+      "error": "خطأ",
+      "warning": "تحذير"
+    },
+    "ui": {
+      "selectPlaceholder": "اختر...",
+      "multiSelectPlaceholder": "اختر...",
+      "comboboxPlaceholder": "بحث واختيار...",
+      "comboboxSearch": "ابحث...",
+      "comboboxEmpty": "لا توجد نتائج",
+      "searchClear": "مسح البحث",
+      "searchPlaceholder": "بحث...",
+      "fieldClear": "مسح",
+      "fileUploadPrompt": "اسحب الملفات هنا أو اضغط للاختيار",
+      "fileUploadButton": "اختيار ملفات",
+      "fileUpload": "رفع ملف",
+      "fileRemove": "إزالة {{filename}}",
+      "modalClose": "إغلاق",
+      "numberDecrease": "إنقاص",
+      "numberIncrease": "زيادة",
+      "decreaseQty": "إنقاص الكمية",
+      "increaseQty": "زيادة الكمية",
+      "multiSelectRemove": "إزالة {{label}}",
+      "toastClose": "إغلاق التنبيه",
+      "noResults": "لا توجد نتائج"
+    },
+    "units": {
+      "piece_zero": "{{count}} حبات",
+      "piece_one": "حبة",
+      "piece_two": "حبتان",
+      "piece_few": "{{count}} حبات",
+      "piece_many": "{{count}} حبة",
+      "piece_other": "{{count}} حبة"
+    }
+  }
+}
