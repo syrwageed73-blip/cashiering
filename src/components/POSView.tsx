@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Product, Category, StoreSettings, CartItem, Invoice } from '../types';
-import { ShoppingCart, Percent, ShieldCheck, CreditCard, Trash2, Smartphone, Plus, Minus, Grid, AlertTriangle, Zap, Flame, ChevronUp, ChevronDown } from 'lucide-react';
+import { Product, Category, StoreSettings, CartItem } from '../types';
+import { ShoppingCart, Percent, ShieldCheck, CreditCard, Trash2, Smartphone, Plus, Minus, Grid, AlertTriangle } from 'lucide-react';
 import { Button, SearchInput, NumberField, SegmentedControl } from './ui';
 
 interface POSViewProps {
@@ -12,7 +12,6 @@ interface POSViewProps {
   setCart: React.Dispatch<React.SetStateAction<CartItem[]>>;
   addToast: (text: string, type: 'success' | 'error' | 'warning' | 'info') => void;
   onCheckoutComplete: (paymentMethod: 'cash' | 'card' | 'mobile', discountVal: number, cashPaid: number) => void;
-  invoices?: Invoice[];
 }
 
 export const POSView: React.FC<POSViewProps> = ({
@@ -23,7 +22,6 @@ export const POSView: React.FC<POSViewProps> = ({
   setCart,
   addToast,
   onCheckoutComplete,
-  invoices = []
 }) => {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState<string>('all');
@@ -32,38 +30,6 @@ export const POSView: React.FC<POSViewProps> = ({
   const [discountPercent, setDiscountPercent] = useState<number>(0);
   const [manualDiscount, setManualDiscount] = useState<number>(0);
   const [usePercentDiscount, setUsePercentDiscount] = useState<boolean>(true);
-  
-  // Quick Access Panel State
-  const [bestSellersOpen, setBestSellersOpen] = useState<boolean>(true);
-
-  // Generate list of best sellers dynamically from past transactions, or fallback to first items
-  const getBestSellers = (): Product[] => {
-    if (!products || products.length === 0) return [];
-    
-    const salesCount: Record<string, number> = {};
-    if (invoices && invoices.length > 0) {
-      invoices.forEach(inv => {
-        if (inv.items) {
-          inv.items.forEach(item => {
-            salesCount[item.productId] = (salesCount[item.productId] || 0) + item.quantity;
-          });
-        }
-      });
-    }
-
-    // Sort products by sales count, prioritizing items with record sales, or fallback to highest stock
-    const sortedProducts = [...products].sort((a, b) => {
-      const salesA = salesCount[a.id] || 0;
-      const salesB = salesCount[b.id] || 0;
-      if (salesB !== salesA) {
-        return salesB - salesA;
-      }
-      return b.stock - a.stock;
-    });
-
-    return sortedProducts.slice(0, 8);
-  };
-  
   // Checkout Modal State
   const [checkoutPriceModal, setCheckoutPriceModal] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<'cash' | 'card' | 'mobile'>('cash');
@@ -149,7 +115,6 @@ export const POSView: React.FC<POSViewProps> = ({
                           p.barcode.includes(searchQuery);
     return matchesCat && matchesSearch;
   });
-  const bestSellerProducts = getBestSellers();
   const cartUnits = cart.reduce((acc, curr) => acc + curr.quantity, 0);
   const filteredLowStockCount = filteredProducts.filter(
     (product) => product.stock > 0 && product.stock <= (product.lowStockAlert || settings.lowStockAlertQty)
@@ -280,91 +245,6 @@ export const POSView: React.FC<POSViewProps> = ({
           </div>
         </div>
 
-        {/* Quick Access Grid: Best-selling products */}
-        <div id="quick-access-section" className="mb-4 gradient-primary-soft border border-indigo-100/30 p-3.5 rounded-2xl select-none">
-          <div className="flex items-center justify-between mb-2 pb-1.5 border-b border-indigo-200/20">
-            <div className="flex items-center gap-1.5 font-bold text-xs text-slate-800">
-              <div className="w-6 h-6 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center">
-                <Zap className="h-3.5 w-3.5 text-white fill-white" />
-              </div>
-              <span>{t('pos.quickAccessPanelTitle')}</span>
-              <span className="text-[9px] font-bold text-amber-600 bg-amber-50/80 border border-amber-100/50 px-1.5 py-0.5 rounded-md mr-1.5">{t('pos.quickAccessOneClick')}</span>
-            </div>
-            <Button
-              id="toggle-quick-access-btn"
-              variant="ghost"
-              size="sm"
-              onClick={() => setBestSellersOpen(!bestSellersOpen)}
-              className="!h-7 !min-w-[36px] !px-2 text-gray-500 hover:text-gray-700 text-[10px]"
-              rightIcon={
-                bestSellersOpen ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />
-              }
-            >
-              {bestSellersOpen ? t('pos.quickAccessHide') : t('pos.quickAccessShow')}
-            </Button>
-          </div>
-
-          {bestSellersOpen && (
-            <div className="mt-2 grid grid-cols-2 gap-2 sm:grid-cols-4 xl:grid-cols-6 2xl:grid-cols-8">
-              {bestSellerProducts.map((p) => {
-                const isOutOfStock = p.stock <= 0;
-                return (
-                  <button
-                    id={`quick-add-${p.id}`}
-                    key={`quick-${p.id}`}
-                    disabled={isOutOfStock}
-                    onClick={() => {
-                      if (!isOutOfStock) {
-                        addToCart(p);
-                        playBeep();
-                      }
-                    }}
-                    className={`relative flex flex-col items-center justify-center text-center p-2 rounded-xl border cursor-pointer select-none transition-all group shadow-sm hover-lift ${
-                      isOutOfStock
-                        ? 'border-gray-150 opacity-40 cursor-not-allowed'
-                        : 'border-indigo-100/50 bg-white/80 hover:border-indigo-300 hover:bg-white'
-                    }`}
-                  >
-                    {/* Compact Image/Icon Representation */}
-                    <div className="h-10 w-10 bg-slate-100/80 rounded-lg flex items-center justify-center mb-1 overflow-hidden relative group-hover:scale-105 transition-transform">
-                      {p.image ? (
-                        <img src={p.image} alt={p.name} className="h-full w-full object-cover" referrerPolicy="no-referrer" />
-                      ) : (
-                        <ShoppingCart className="h-4 w-4 text-gray-400" />
-                      )}
-                      
-                      {/* Popularity flame visual badge */}
-                      <div className="absolute top-0.5 right-0.5 bg-amber-500 text-white p-0.5 rounded-full scale-75 origin-top-right">
-                        <Flame className="h-2.5 w-2.5 fill-white" />
-                      </div>
-                    </div>
-
-                    {/* Short title */}
-                    <span className="text-[10px] font-bold text-gray-900 truncate w-full px-1 mb-0.5" title={p.name}>
-                      {p.name}
-                    </span>
-
-                    {/* Compact Price tag */}
-                    <div className="flex items-center gap-0.5 mt-auto">
-                      <span className="text-[10px] font-black text-indigo-600 font-mono">
-                        {p.price.toFixed(2)}
-                      </span>
-                      <span className="text-[8px] text-gray-400 leading-none">ر.س</span>
-                    </div>
-
-                    {/* stock label counter */}
-                    {p.stock <= 5 && p.stock > 0 && (
-                      <span className="absolute top-1 left-1 text-[7px] font-black bg-amber-500 text-white px-1 py-0.2 rounded-sm scale-90">
-                        {t('pos.stockBadge.unit', { count: p.stock })}
-                      </span>
-                    )}
-                  </button>
-                );
-              })}
-            </div>
-          )}
-        </div>
-
         {/* Dynamic Horizontal Categories Ribbon */}
         <div className="flex gap-2 overflow-x-auto pb-3 shrink-0 scrollbar-none">
           <button
@@ -398,7 +278,7 @@ export const POSView: React.FC<POSViewProps> = ({
           })}
         </div>
 
-        <div className="mb-4 grid grid-cols-2 gap-3 xl:grid-cols-4 xl:gap-4">
+        <div className="mb-4 grid grid-cols-1 gap-3 sm:grid-cols-3 xl:gap-4">
           <div className="glass-card rounded-2xl px-4 py-3 text-right">
             <span className="text-[10px] font-bold text-gray-500 block">{t('pos.stats.searchResults')}</span>
             <span className="text-lg font-black text-gray-950 block mt-2">{filteredProducts.length}</span>
@@ -410,10 +290,6 @@ export const POSView: React.FC<POSViewProps> = ({
           <div className="glass-card rounded-2xl px-4 py-3 text-right">
             <span className="text-[10px] font-bold text-gray-500 block">{t('pos.stats.lowStockInView')}</span>
             <span className="text-lg font-black text-amber-500 block mt-2">{filteredLowStockCount}</span>
-          </div>
-          <div className="glass-card rounded-2xl px-4 py-3 text-right">
-            <span className="text-[10px] font-bold text-gray-500 block">{t('pos.stats.quickProducts')}</span>
-            <span className="text-lg font-black text-sky-600 block mt-2">{bestSellerProducts.length}</span>
           </div>
         </div>
 

@@ -24,7 +24,7 @@ export const ReceiptPrint: React.FC<ReceiptPrintProps> = ({ invoice, settings, s
       className={`mx-auto bg-white text-black p-4 system-receipt rounded border border-gray-100 shadow-sm ${
         size === '58mm' ? 'w-[58mm] text-xs' : 'w-[80mm] text-sm'
       }`}
-      style={{ fontFamily: 'monospace, "Tajawal", sans-serif', direction: 'rtl' }}
+      style={{ fontFamily: '"IBM Plex Sans Arabic", monospace, sans-serif', direction: 'rtl' }}
     >
       {/* Receipt Logo & Header */}
       <div className="text-center pb-3 border-b border-dashed border-gray-300">

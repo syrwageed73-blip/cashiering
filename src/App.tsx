@@ -28,7 +28,7 @@ type ViewKey = 'pos' | 'products' | 'inventory' | 'reports' | 'settings' | 'back
 
 const ROLE_VIEW_ACCESS: Record<UserRole, ViewKey[]> = {
   admin: ['pos', 'products', 'inventory', 'reports', 'settings', 'backup'],
-  cashier: ['pos', 'reports'],
+  cashier: ['pos', 'products', 'inventory', 'reports'],
 };
 
 const DEFAULT_ROLE: UserRole = 'cashier';
@@ -48,7 +48,7 @@ export default function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const { t } = useTranslation();
-  const { lang, toggleLanguage } = useDirection();
+  useDirection();
 
   // --- 1. State Orchestration & Persistent Engine ---
   const [products, setProducts] = useState<Product[]>([]);
@@ -775,7 +775,6 @@ export default function App() {
             setCart={setCart}
             addToast={addToast}
             onCheckoutComplete={handleCheckoutComplete}
-            invoices={invoices}
           />
         );
       case 'products':
@@ -942,18 +941,6 @@ export default function App() {
               className="bg-white/60 border border-gray-200/50 hover:bg-rose-50 text-rose-500 hover:text-rose-600 hover:shadow-sm"
             >
               <span className="hidden md:inline">{t('app.header.signOut')}</span>
-            </Button>
-
-            {/* Language Switcher */}
-            <Button
-              id="language-switcher"
-              variant="ghost"
-              size="sm"
-              onClick={toggleLanguage}
-              aria-label="Switch language / تبديل اللغة"
-              className="bg-white/60 border border-gray-200/50 hover:bg-indigo-50 text-gray-500 hover:text-indigo-600 hover:shadow-sm min-w-[44px] min-h-[44px]"
-            >
-              <span className="font-bold text-xs">{lang === 'ar' ? 'EN' : 'ع'}</span>
             </Button>
 
           </div>

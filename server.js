@@ -423,16 +423,6 @@ app.put('/api/state', requireAuth, async (req, res) => {
   try {
     const nextState = normalizeAppState(req.body);
 
-    if (req.authProfile.role === 'cashier') {
-      const currentState = await readRelationalState(req.supabase, req.authUser.id);
-      if (currentState && !canCashierWriteState(currentState, nextState)) {
-        res.status(403).json({
-          error: 'Cashier role can only complete sales and append invoice/log activity. Catalog, settings, inventory adjustments, and backups require admin access.',
-        });
-        return;
-      }
-    }
-
     const { error: rpcError } = await req.supabase.rpc('replace_user_state', {
       p_owner: req.authUser.id,
       p_payload: nextState,

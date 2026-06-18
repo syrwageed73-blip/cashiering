@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --font-sans: "Tajawal", "IBM Plex Sans Arabic", "Segoe UI", "Tahoma", "Arial", sans-serif;
+  --font-sans: "IBM Plex Sans Arabic", sans-serif;
 }
 
 /* ================================================================
@@ -10,12 +12,13 @@
 
 /* === Base & RTL === */
 body {
-  font-family: "Tajawal", "IBM Plex Sans Arabic", "Segoe UI", "Tahoma", "Arial", sans-serif;
+  font-family: "IBM Plex Sans Arabic", sans-serif;
   direction: rtl;
   overflow-x: hidden;
   background: linear-gradient(135deg, #f8fafc 0%, #eef2ff 50%, #f0f9ff 100%);
   min-height: 100vh;
   position: relative;
+  color-scheme: light;
 }
 
 #root {
@@ -646,7 +649,7 @@ body {
     padding: 10px !important;
     background: #ffffff !important;
     color: #000000 !important;
-    font-family: "Tajawal", monospace !important;
+    font-family: "IBM Plex Sans Arabic", monospace !important;
   }
 
   .receipt-58mm {
@@ -937,4 +940,3 @@ input[type="number"]::-webkit-outer-spin-button {
     transform: none !important;
   }
 }
-
