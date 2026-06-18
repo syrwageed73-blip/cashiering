@@ -1,0 +1,27 @@
+{
+  "name": "نظام كاشير مبيعات متكامل",
+  "short_name": "الكاشير",
+  "description": "نظام كاشير مبيعات متكامل لإدارة المنتجات والمخزون والفواتير والتقارير.",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./#/login",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#f8fafc",
+  "theme_color": "#4338ca",
+  "icons": [
+    {
+      "src": "./icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

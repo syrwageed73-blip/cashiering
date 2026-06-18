@@ -26,6 +26,11 @@ import { Store, Monitor, HelpCircle, Package, ShieldCheck, ClipboardList, BarCha
 
 type ViewKey = 'pos' | 'products' | 'inventory' | 'reports' | 'settings' | 'backup';
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => Promise<void>;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed'; platform: string }>;
+}
+
 const ROLE_VIEW_ACCESS: Record<UserRole, ViewKey[]> = {
   admin: ['pos', 'products', 'inventory', 'reports', 'settings', 'backup'],
   cashier: ['pos', 'products', 'inventory', 'reports'],
@@ -67,6 +72,7 @@ export default function App() {
   const [isProfileLoading, setIsProfileLoading] = useState<boolean>(false);
   const [isAuthReady, setIsAuthReady] = useState<boolean>(false);
   const [isDataLoading, setIsDataLoading] = useState<boolean>(false);
+  const [installPrompt, setInstallPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const saveQueueRef = useRef<Promise<void>>(Promise.resolve());
 
   // Fullscreen support state
@@ -80,6 +86,25 @@ export default function App() {
     return () => document.removeEventListener('fullscreenchange', handleFullscreenChange);
   }, []);
 
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault();
+      setInstallPrompt(event as BeforeInstallPromptEvent);
+    };
+
+    const handleAppInstalled = () => {
+      setInstallPrompt(null);
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    window.addEventListener('appinstalled', handleAppInstalled);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+      window.removeEventListener('appinstalled', handleAppInstalled);
+    };
+  }, []);
+
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(err => {
@@ -89,6 +114,18 @@ export default function App() {
       document.exitFullscreen().catch(err => {
         console.error('Error exiting fullscreen mode:', err);
       });
+    }
+  };
+
+  const handleInstallApp = async () => {
+    if (!installPrompt) {
+      return;
+    }
+
+    await installPrompt.prompt();
+    const choice = await installPrompt.userChoice;
+    if (choice.outcome === 'accepted') {
+      setInstallPrompt(null);
     }
   };
 
@@ -957,6 +994,21 @@ export default function App() {
             >
               <span className="hidden md:inline">{t('app.header.signOut')}</span>
             </Button>
+
+            {installPrompt && (
+              <Button
+                id="install-app-trigger"
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  void handleInstallApp();
+                }}
+                className="bg-white/60 border border-gray-200/50 hover:bg-indigo-50 text-indigo-600 hover:text-indigo-700 hover:shadow-sm"
+              >
+                <span className="hidden md:inline">تثبيت التطبيق</span>
+                <span className="md:hidden">تثبيت</span>
+              </Button>
+            )}
 
           </div>
 

@@ -5,6 +5,12 @@ import App from './App.tsx';
 import './i18n/config';
 import './index.css';
 
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    void navigator.serviceWorker.register(new URL('./service-worker.js', window.location.href));
+  });
+}
+
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <HashRouter>
