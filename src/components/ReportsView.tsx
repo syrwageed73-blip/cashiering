@@ -114,9 +114,9 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
               <span className="text-xs font-bold text-gray-500 dark:text-zinc-400 block">{t('reports.stats.todaySales')}</span>
               <div className="mt-3 flex items-baseline gap-1.5 justify-between">
                 <h4 className="text-xl font-black text-emerald-600 font-mono">
-                  {todaySalesVal.toFixed(2)} <span className="text-xs text-gray-400 font-sans font-normal">{settings.currencySymbol}</span>
+                  {todaySalesVal.toFixed(2)} <span className="text-xs text-gray-400 dark:text-slate-500 font-sans font-normal">{settings.currencySymbol}</span>
                 </h4>
-                <span className="text-[10px] text-gray-400 font-mono">{t('reports.stats.todayInvoices', { count: todayInvoices.length })}</span>
+                <span className="text-[10px] text-gray-400 dark:text-slate-500 font-mono">{t('reports.stats.todayInvoices', { count: todayInvoices.length })}</span>
               </div>
             </div>
 
@@ -127,7 +127,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                 <h4 className="text-xl font-black text-sky-600 dark:text-sky-400 font-mono">
                   {past7DaysSalesVal.toFixed(2)} <span className="text-xs text-gray-400 font-sans font-normal">{settings.currencySymbol}</span>
                 </h4>
-                <span className="text-[10px] text-gray-400 font-mono">{t('reports.stats.invoiceCount', { count: past7DaysInvoices.length })}</span>
+                <span className="text-[10px] text-gray-400 dark:text-slate-500 font-mono">{t('reports.stats.invoiceCount', { count: past7DaysInvoices.length })}</span>
               </div>
             </div>
 
@@ -138,7 +138,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                 <h4 className="text-xl font-black text-indigo-600 dark:text-indigo-400 font-mono">
                   {monthlySalesVal.toFixed(2)} <span className="text-xs text-gray-400 font-sans font-normal">{settings.currencySymbol}</span>
                 </h4>
-                <span className="text-[10px] text-gray-400 font-mono">{t('reports.stats.monthInvoices', { count: monthlyInvoices.length })}</span>
+                <span className="text-[10px] text-gray-400 dark:text-slate-500 font-mono">{t('reports.stats.monthInvoices', { count: monthlyInvoices.length })}</span>
               </div>
             </div>
 
@@ -149,7 +149,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                 <h4 className="text-xl font-black text-gray-900 dark:text-zinc-50 font-mono">
                   {totalRevenueAllTime.toFixed(2)} <span className="text-xs text-gray-400 font-sans font-normal">{settings.currencySymbol}</span>
                 </h4>
-                <span className="text-[10px] text-gray-400 font-mono">{t('reports.stats.allTimeInvoiceCount', { count: totalInvoicesCount })}</span>
+                <span className="text-[10px] text-gray-400 dark:text-slate-500 font-mono">{t('reports.stats.allTimeInvoiceCount', { count: totalInvoicesCount })}</span>
               </div>
             </div>
 
@@ -208,7 +208,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
               <tbody className="divide-y divide-gray-100 dark:divide-zinc-800">
                 {filteredInvoices.length === 0 ? (
                   <tr>
-                    <td colSpan={7} className="py-12 text-center text-gray-400">
+                    <td colSpan={7} className="py-12 text-center text-gray-400 dark:text-slate-500">
                       {t('reports.invoiceTable.empty')}
                     </td>
                   </tr>
@@ -230,7 +230,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                           <span className="font-semibold text-gray-800 dark:text-zinc-200">
                             {t('reports.itemCount', { count: inv.items.length })}
                           </span>
-                          <span className="text-[10px] text-gray-400 block leading-tight truncate">
+                          <span className="text-[10px] text-gray-400 dark:text-slate-500 block leading-tight truncate">
                             {inv.items.map(i => i.name).join('، ')}
                           </span>
                         </td>
@@ -243,7 +243,7 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
                             <span className="px-2 py-0.5 text-[10px] font-bold bg-amber-50 dark:bg-amber-950 text-amber-600 rounded">{t('reports.invoiceTable.paymentMethods.mobile')}</span>
                           )}
                         </td>
-                        <td className="py-3.5 px-4 font-mono font-medium text-gray-500">
+                        <td className="py-3.5 px-4 font-mono font-medium text-gray-500 dark:text-slate-400">
                           {inv.tax.toFixed(2)} ر.س
                         </td>
                         <td className="py-3.5 px-4 font-mono font-black text-slate-900 dark:text-white text-sm">
@@ -294,13 +294,13 @@ export const ReportsView: React.FC<ReportsViewProps> = ({
             
             <div className="flex justify-between items-center mb-4 pb-3 border-b border-gray-50 dark:border-zinc-800 shrink-0">
               <h3 className="text-sm font-black text-gray-950 dark:text-white flex items-center gap-1.5">
-                <Receipt className="h-4.5 w-4.5 text-gray-500" /> {t('reports.receipt.title')}
+                <Receipt className="h-4.5 w-4.5 text-gray-500 dark:text-slate-400" /> {t('reports.receipt.title')}
               </h3>
               <button
                 id="close-receipt-modal-btn"
                 onClick={() => setSelectedInvoice(null)}
                 aria-label={t('common.actions.close')}
-                className="text-gray-400 hover:text-gray-650 font-bold text-lg leading-none w-9 h-9 grid place-items-center rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer"
+                className="text-gray-400 dark:text-slate-500 hover:text-gray-650 font-bold text-lg leading-none w-9 h-9 grid place-items-center rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800 cursor-pointer"
               >
                 ×
               </button>

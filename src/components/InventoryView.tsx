@@ -85,7 +85,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <h4 className="text-2xl font-black text-gray-950 dark:text-white font-mono">{totalProducts}</h4>
-            <span className="text-xs text-gray-400">{t('inventory.metrics.itemsInCashier')}</span>
+            <span className="text-xs text-gray-400 dark:text-slate-500">{t('inventory.metrics.itemsInCashier')}</span>
           </div>
         </div>
 
@@ -97,7 +97,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <h4 className="text-2xl font-black text-gray-950 dark:text-white font-mono">{totalInventoryUnits}</h4>
-            <span className="text-xs text-gray-400">{t('inventory.metrics.saleUnit')}</span>
+            <span className="text-xs text-gray-400 dark:text-slate-500">{t('inventory.metrics.saleUnit')}</span>
           </div>
         </div>
 
@@ -109,7 +109,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <h4 className="text-2xl font-black text-amber-500 font-mono">{lowStockList.length}</h4>
-            <span className="text-xs text-gray-400">{t('inventory.metrics.belowSafetyLevel')}</span>
+            <span className="text-xs text-gray-400 dark:text-slate-500">{t('inventory.metrics.belowSafetyLevel')}</span>
           </div>
         </div>
 
@@ -121,7 +121,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
           </div>
           <div className="mt-3 flex items-baseline gap-2">
             <h4 className="text-2xl font-black text-rose-500 font-mono">{outOfStockList.length}</h4>
-            <span className="text-xs text-gray-400">{t('inventory.metrics.needsImmediateSupply')}</span>
+            <span className="text-xs text-gray-400 dark:text-slate-500">{t('inventory.metrics.needsImmediateSupply')}</span>
           </div>
         </div>
 
@@ -135,7 +135,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
             <h4 className="text-sm font-black text-gray-900 dark:text-zinc-50 flex items-center gap-2">
               <RefreshCcw className="h-4.5 w-4.5 text-sky-500" /> {t('inventory.adjust.title')}
             </h4>
-            <p className="text-[11px] text-gray-500 mt-1">{t('inventory.adjust.subtitle')}</p>
+            <p className="text-[11px] text-gray-500 dark:text-slate-400 mt-1">{t('inventory.adjust.subtitle')}</p>
           </div>
 
           <form onSubmit={handleAdjustmentSubmit} className="space-y-4">
@@ -234,7 +234,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
               <h4 className="text-sm font-black text-gray-900 dark:text-zinc-50 flex items-center gap-2">
                 <ClipboardList className="h-4.5 w-4.5 text-indigo-500" /> {t('inventory.history.title')}
               </h4>
-              <p className="text-[11px] text-gray-500 mt-1">{t('inventory.history.subtitle')}</p>
+              <p className="text-[11px] text-gray-500 dark:text-slate-400 mt-1">{t('inventory.history.subtitle')}</p>
             </div>
 
             <div className="overflow-x-auto max-h-[380px] rounded-xl border border-gray-100 dark:border-zinc-800">
@@ -251,13 +251,13 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
                 <tbody className="divide-y divide-gray-50 dark:divide-zinc-800">
                   {stockLogs.length === 0 ? (
                     <tr>
-                      <td colSpan={5} className="py-12 text-center text-gray-400">
+                      <td colSpan={5} className="py-12 text-center text-gray-400 dark:text-slate-500">
                         {t('inventory.history.empty')}
                       </td>
                     </tr>
                   ) : (
                     stockLogs.map((log) => {
-                      let typeLabel = <span className="text-[10px] bg-slate-100 px-1.5 py-0.5 rounded text-gray-600 font-bold">{t('inventory.adjust.typeAdjust')}</span>;
+                      let typeLabel = <span className="text-[10px] bg-slate-100 dark:bg-slate-800/50 px-1.5 py-0.5 rounded text-gray-600 dark:text-slate-300 font-bold">{t('inventory.adjust.typeAdjust')}</span>;
 
                       if (log.type === 'sale') {
                         typeLabel = <span className="text-[10px] bg-sky-50 dark:bg-sky-950/40 px-1.5 py-0.5 rounded text-sky-600 dark:text-sky-450 font-bold flex items-center gap-0.5 w-max"><ArrowDownRight className="h-2.5 w-2.5" /> {t('inventory.history.types.sale')}</span>;
@@ -274,7 +274,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
 
                       return (
                         <tr key={log.id} className="hover:bg-slate-50/50 dark:hover:bg-zinc-800/10">
-                          <td className="py-2 px-3 text-gray-500 font-mono whitespace-nowrap">
+                          <td className="py-2 px-3 text-gray-500 dark:text-slate-400 font-mono whitespace-nowrap">
                             {logDate} {logTime}
                           </td>
                           <td className="py-2 px-3 font-bold text-gray-800 dark:text-zinc-200">
@@ -286,7 +286,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
                           <td className="py-2 px-3 font-mono font-black text-gray-950 dark:text-white">
                             {t('inventory.unit', { count: log.quantity })}
                           </td>
-                          <td className="py-2 px-3 text-gray-500 truncate max-w-[150px]" title={log.notes}>
+                          <td className="py-2 px-3 text-gray-500 dark:text-slate-400 truncate max-w-[150px]" title={log.notes}>
                             {log.notes}
                           </td>
                         </tr>
@@ -298,7 +298,7 @@ export const InventoryView: React.FC<InventoryViewProps> = ({
             </div>
           </div>
 
-          <div className="mt-4 pt-4 border-t border-gray-50 dark:border-zinc-800 text-[10px] text-gray-400 flex items-center gap-1.5 justify-end">
+          <div className="mt-4 pt-4 border-t border-gray-50 dark:border-zinc-800 text-[10px] text-gray-400 dark:text-slate-500 flex items-center gap-1.5 justify-end">
             <AlertCircle className="h-3.5 w-3.5 text-sky-500" />
             <span>{t('inventory.history.systemNote')}</span>
           </div>

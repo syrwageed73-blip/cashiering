@@ -67,7 +67,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
         <div>
           <h2 className="text-base font-black text-gray-950 dark:text-zinc-50">{t('settings.sectionTitle')}</h2>
-          <p className="text-[11px] text-gray-500 mt-0.5">{t('settings.sectionSubtitle')}</p>
+          <p className="text-[11px] text-gray-500 dark:text-slate-400 mt-0.5">{t('settings.sectionSubtitle')}</p>
         </div>
       </div>
 

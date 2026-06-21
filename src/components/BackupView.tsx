@@ -132,7 +132,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
           </div>
           <div>
             <h2 className="text-base font-black text-gray-950 dark:text-zinc-50">{t('backup.pageTitle')}</h2>
-            <p className="text-[11px] text-gray-500 mt-1">{t('backup.overviewSubtitle')}</p>
+            <p className="text-[11px] text-gray-500 dark:text-slate-400 mt-1">{t('backup.overviewSubtitle')}</p>
           </div>
         </div>
 
@@ -144,11 +144,11 @@ export const BackupView: React.FC<BackupViewProps> = ({
               <h3 className="text-sm font-black text-gray-900 dark:text-zinc-50 flex items-center gap-1.5">
                 <Download className="h-4.5 w-4.5 text-emerald-500" /> {t('backup.export.title')}
               </h3>
-              <p className="text-xs text-gray-500 leading-relaxed">
+              <p className="text-xs text-gray-500 dark:text-slate-400 leading-relaxed">
                 {t('backup.export.description')}
               </p>
 
-              <ul className="text-[10px] text-gray-400 space-y-1 pt-2">
+              <ul className="text-[10px] text-gray-400 dark:text-slate-500 space-y-1 pt-2">
                 <li className="flex items-center gap-1">✓ {t('backup.export.products', { count: products.length })}</li>
                 <li className="flex items-center gap-1">✓ {t('backup.export.invoices', { count: invoices.length })}</li>
                 <li className="flex items-center gap-1">✓ {t('backup.export.includesStockAndConfig')}</li>
@@ -187,7 +187,7 @@ export const BackupView: React.FC<BackupViewProps> = ({
                 buttonText={t('backup.import.buttonText')}
                 onChange={handleRestoreFile}
               />
-              <p className="text-[10px] text-gray-400 mt-2 text-center">{t('backup.import.fileTypeNote')}</p>
+              <p className="text-[10px] text-gray-400 dark:text-slate-500 mt-2 text-center">{t('backup.import.fileTypeNote')}</p>
             </div>
           </div>
 

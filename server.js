@@ -412,6 +412,8 @@ app.get('/api/me', requireAuth, async (req, res) => {
 app.get('/api/state', requireAuth, async (req, res) => {
   try {
     const state = await readRelationalState(req.supabase, req.authUser.id);
+    console.log(`[API] GET /api/state for user ${req.authUser.id}`);
+    console.log(`[API] Returned products count: ${state ? state.products.length : 'null'}`);
     res.json({ data: state });
   } catch (error) {
     console.error('Failed to fetch app state:', error);
@@ -422,11 +424,15 @@ app.get('/api/state', requireAuth, async (req, res) => {
 app.put('/api/state', requireAuth, async (req, res) => {
   try {
     const nextState = normalizeAppState(req.body);
+    console.log(`[API] PUT /api/state for user ${req.authUser.id}`);
+    console.log(`[API] Payload products count: ${nextState.products.length}`);
 
-    const { error: rpcError } = await req.supabase.rpc('replace_user_state', {
+    const { error: rpcError, data } = await req.supabase.rpc('replace_user_state', {
       p_owner: req.authUser.id,
       p_payload: nextState,
     });
+    
+    console.log(`[API] RPC Result - Error:`, rpcError, `Data:`, data);
 
     if (rpcError) {
       throw rpcError;
